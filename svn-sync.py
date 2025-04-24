@@ -3,6 +3,7 @@ import re
 from subprocess import run
 import os
 import datetime
+import argparse
 
 
 def get_commit(revision: int, new_revision: int) -> list:
@@ -137,4 +138,15 @@ def main(root_path: str) -> None:
 
 
 if __name__ == "__main__":
-    main("/home/lucas/olex2-gui-setup")
+    # Set up argument parser
+    parser = argparse.ArgumentParser(
+        description="Sync SVN repository changes to a Git repository."
+    )
+    parser.add_argument(
+        "root_path",
+        help="The root path containing the script, revision file, SVN checkout, and Git checkout.",
+    )
+    args = parser.parse_args()
+
+    # Call main with the provided path
+    main(args.root_path)
