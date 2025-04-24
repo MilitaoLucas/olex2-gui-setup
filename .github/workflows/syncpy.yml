@@ -1,0 +1,63 @@
+name: Sync SVN to Git
+
+on:
+  # Trigger manually from the Actions tab
+  workflow_dispatch:
+
+  # Trigger automatically on a schedule (e.g., every hour)
+  schedule:
+    - cron: '0 * * * *' # Runs at the start of every hour
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest # Use a Linux runner
+
+    steps:
+      - name: Install SVN and rsync
+        run: |
+          sudo apt-get update -y
+          sudo apt-get install -y subversion rsync
+
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          # Fetch all history so tagging and branching operations work correctly
+          fetch-depth: 0
+          # Use a Personal Access Token (PAT) if you need to trigger other workflows
+          # Or if the default GITHUB_TOKEN doesn't have enough permissions (e.g., cross-repo)
+          # token: ${{ secrets.YOUR_PAT }} # Usually not needed for same-repo pushes
+      - name: Configure Git User
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+
+      - name: Setup SSH Agent for Repo-B Access
+        uses: webfactory/ssh-agent@v0.9.0
+        with:
+          ssh-private-key: ${{ secrets.OLEX2_GUI_DEPLOY_KEY }}
+      # Important: Configure Git user for commits made by the action
+      - name: Configure Git User
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+
+      - name: Fetch submodules
+        run: |
+          git submodule update --init --recursive
+      
+      - name: Run SVN to Git Sync Script
+        id: sync_script
+        run: |
+          # Execute your Python script, passing the workspace path as the root path
+          python ./your_sync_script_name.py ${{ github.workspace }}
+
+      # You might want to add error reporting here if the script step fails
+      - name: Report Failure
+        if: steps.sync_script.outcome == 'failure'
+        run: echo "SVN Sync script failed. Check logs."
+        # Potentially send a notification here
+
+      - name: Report Failure
+        if: steps.sync_script.outcome == 'failure'
+        run: echo "SVN Sync script failed. Check logs."
+        # Potentially send a notification here
