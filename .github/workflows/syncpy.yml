@@ -56,8 +56,3 @@ jobs:
         if: steps.sync_script.outcome == 'failure'
         run: echo "SVN Sync script failed. Check logs."
         # Potentially send a notification here
-
-      - name: Report Failure
-        if: steps.sync_script.outcome == 'failure'
-        run: echo "SVN Sync script failed. Check logs."
-        # Potentially send a notification here
