@@ -49,7 +49,7 @@ jobs:
         id: sync_script
         run: |
           # Execute your Python script, passing the workspace path as the root path
-          python ./your_sync_script_name.py ${{ github.workspace }}
+          python svn-sync.py ${{ github.workspace }}
 
       # You might want to add error reporting here if the script step fails
       - name: Report Failure
