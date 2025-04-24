@@ -1,0 +1,26 @@
+#value=
+#width=100%
+#height=GetVar('HtmlInputHeight')
+#manage=false
+#password=false
+#multiline=false
+#disabled=false
+
+<font size="$GetVar('HtmlFontSizeControls')">
+<input
+  type="text"
+  height="#height"
+  bgcolor="GetVar('HtmlInputBgColour')"
+  fgcolor="GetVar(HtmlFontColour)"
+  valign="center"
+  name="#name"
+  width="#width"
+  value="#value"
+  onchange="#onchange"
+  onleave="#onleave"
+  manage="#manage"
+  password="#password"
+  multiline="#multiline"
+  disabled="#disabled"
+>
+</font>

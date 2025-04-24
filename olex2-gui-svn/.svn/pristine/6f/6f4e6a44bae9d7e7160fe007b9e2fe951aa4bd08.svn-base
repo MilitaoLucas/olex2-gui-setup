@@ -1,0 +1,35 @@
+
+<tr bgcolor="$spy.GetParam(gui.timage_colour)">
+  <td bgcolor="$spy.GetParam(gui.html.table_firstcol_colour)">
+  </td>
+  <td align='center' colspan = "2" bgcolor="$spy.GetParam(gui.html.table_firstcol_colour)">
+    <font size="+2" color=$spy.GetParam(gui.html.highlight_colour)>
+      <b>+ + + THIS is VERSION 1.1-ALPHA + + +</b>
+    </font>
+  </td>
+</tr>
+
+<tr>
+  <td bgcolor="$spy.GetParam(gui.html.table_firstcol_colour)">
+  </td>
+  <td align='center' colspan='2' bgcolor="$spy.GetParam(gui.html.highlight_colour)">
+  
+  <table cellpadding="4" cellspacing="1" width='100%'>
+    <tr>
+      <td bgcolor="$spy.GetParam(gui.html.table_bg_colour)">
+  
+        <b>
+        This version of Olex2 may be unstable. It is our experimental version that we use to test new features. You are welcome to
+        to use this version, but please be aware that things will frequently not quite work out the way you might expect.<br>
+        <font color='red'>Please be aware that it can happen that this version of Olex2 will not restart
+        after an update. In that case, you will need to re-install this alpha version, or contact us for help.</font>
+        </b>
+
+      </td>
+    </tr>
+  </table>
+  
+  </td>
+</tr>
+
+<!-- #include news news\content-1.1.htm;1; -->

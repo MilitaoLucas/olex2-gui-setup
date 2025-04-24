@@ -1,0 +1,7 @@
+<!-- #include tool-top gui\blocks\tool-top.htm;image=#image;onclick=#onclick;1; -->
+
+<!-- #include news news\content-$spy.GetTag().htm;1; -->
+
+<!-- #include tool-footer gui\blocks\tool-footer.htm;colspan=3;1; -->
+
+<!-- %news-4-title% %news-4% %news-6-title% %news-6% -->

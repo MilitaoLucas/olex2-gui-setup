@@ -1,0 +1,49 @@
+<!-- #include tool-top gui\blocks\tool-top.htm;image=#image;onclick=#onclick;1; -->
+
+<!-- FIRST ROW -->
+<!-- #include tool-row-help gui\blocks\tool-row-help.htm;name='REFLECTION_FILE';help_ext=reflection-file;1 -->
+  <td name=REFLECTION_FILE_LABEL width="10%">
+    <b>%hkl File%</b>
+  </td>
+
+  <td name=REFLECTION_FILE_INPUT align='left' width="25%">
+<!-- #include reflection-file gui\snippets\snippet-reflection-file.htm;1; -->
+  </td>
+
+
+  <!--<td align='right' width="15%">-->
+  <!--Use plotly?-->
+  <!--</td>-->
+
+  <!--<td name=USE_PLOTLY align='left' width="5%">-->
+    <!--$+-->
+    <!--html.Snippet("gui/snippets/input-checkbox", "name=USE_PLOTLY",-->
+    <!--"checked=spy.GetParam('user.diagnostics.use_plotly')",-->
+    <!--"onclick=spy.SetParam('user.diagnostics.use_plotly', html.GetState('~name~'))")-->
+    <!--$--->
+  <!--</td>-->
+
+  <td align='right' width="25%">
+  </td>
+
+  <td align='right' width="25%">
+  Write graphics file?
+  </td>
+
+  <td name=SAVE_FILE align='left' width="5%">
+    $+
+    html.Snippet("gui/snippets/input-checkbox", "name=SAVE_FILE",
+    "checked=spy.GetParam('user.diagnostics.save_file')",
+    "onclick=spy.SetParam('user.diagnostics.save_file', html.GetState('~name~'))")
+    $-
+  </td>
+
+
+<!-- #include row_table_off gui\blocks\row_table_off.htm;1; -->
+
+<!-- SECOND ROW -->
+<!-- #include tool-row-help gui\blocks\tool-row-help.htm;name='REFLECTION_Graph';help_ext=Reflection-Graph;1 -->
+$spy.makeReflectionGraphGui()
+<!-- #include row_table_off gui\blocks\row_table_off.htm;1; -->
+
+<!-- #include tool-footer gui\blocks\tool-footer.htm;colspan=2;1; -->

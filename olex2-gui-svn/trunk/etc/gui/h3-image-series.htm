@@ -1,0 +1,101 @@
+<!-- #include tool-h3 gui\blocks\tool-h3.htm;image=#image;colspan=1;1; -->
+
+<!-- FIRST ROW -->
+<!-- #include tool-row-help gui\blocks\tool-row-help.htm;name=IS_ROW_1; help_ext=is_row_1;1; -->
+  <td>
+    %This will produce a series of .bmp files in the sub-folder 'movie'%
+  </td>
+  <td name=IMAGE_PS_BUTTON>
+$spy.MakeHoverButton('small-GO','spy.run_MakeMovie()')
+  </td>
+<!-- #include row_table_off gui\blocks\row_table_off.htm;1; -->
+
+<!-- SECOND ROW -->
+<!-- #include tool-row-help gui\blocks\tool-row-help.htm;name=IS_ROW_2; help_ext=is_row_2;1; -->
+
+  <td name=ROTATION_AROUND_AXIS_LABEL width=40%>
+    <b>%Rotation around Axis%:</b>
+  </td>
+
+  <td name=ROTATION_AROUND_AXIS width=20%>
+    <font size="$GetVar('HtmlFontSizeControls')">
+    <input
+      name="ROTATION_AROUND_AXIS"
+      type="text"
+      height="GetVar('HtmlInputHeight')"
+      bgcolor="GetVar('HtmlInputBgColour')"
+      valign='center'
+      name="axis"
+      width="100%"
+      value="spy.GetParam('snum.image.image_series.rotation_around_axis')"
+      onchange="spy.SetParam('snum.image.image_series.rotation_around_axis',html.GetValue('~name~'))"
+    >
+    </font>
+  </td>
+
+  <td name=DEGREES_OF_ROTATION_LABEL width=20%>
+    <b>%Degree%</b>:
+  </td>
+
+  <td name=DEGREES_OF_ROTATION width=20%>
+    <font size="$GetVar('HtmlFontSizeControls')">
+    <input
+      name="DEGREES_OF_ROTATION"
+      type="text"
+      height="GetVar('HtmlInputHeight')"
+      bgcolor="GetVar('HtmlInputBgColour')"
+      valign='center'
+      name="axis"
+      name="steps"
+      width="100%"
+      value = "spy.GetParam('snum.image.image_series.degrees_of_rotation')"
+      onchange="spy.SetParam('snum.image.image_series.degrees_of_rotation',html.GetValue('~name~'))"
+    >
+    </font>
+  </td>
+<!-- #include row_table_off gui\blocks\row_table_off.htm;1; -->
+
+<!-- THIRD ROW -->
+<!-- #include tool-row-help gui\blocks\tool-row-help.htm;name=IS_ROW_3; help_ext=is_row_3;1; -->
+
+  <td name=NUMBER_OF_FRAMES_LABEL width=40%>
+    <b>%Number of frames%:</b>
+  </td>
+  <td name=NUMBER_OF_FRAMES width=20%>
+    <font size="$GetVar('HtmlFontSizeControls')">
+    <input
+      name="NUMBER_OF_FRAMES"
+      type="text"
+      height="GetVar('HtmlInputHeight')"
+      bgcolor="GetVar('HtmlInputBgColour')"
+      valign='center'
+      name="axis"
+      name="frames"
+      width="100%"
+      value="spy.GetParam('snum.image.image_series.number_of_frames')"
+      onchange="spy.SetParam('snum.image.image_series.number_of_frames',html.GetValue('~name~'))"
+    >
+    </font>
+  </td>
+
+  <td name=SIZE_LABEL width=20%>
+    <b>%Size%</b>:
+  </td>
+
+  <td name=SIZE_OF_FRAMES width=20%>
+    <font size="$GetVar('HtmlFontSizeControls')">
+    <input
+      name='SIZE_OF_FRAMES'
+      type="text"
+      height="GetVar('HtmlInputHeight')"
+      bgcolor="GetVar('HtmlInputBgColour')"
+      valign='center'
+      name="axis"
+      name="size"
+      width="100%"
+      value="spy.GetParam('snum.image.image_series.size_of_frames')"
+      onchange="spy.SetParam('snum.image.image_series.size_of_frames',html.GetValue('~name~'))"
+      >
+      </font>
+  </td>
+<!-- #include row_table_off gui\blocks\row_table_off.htm;1; -->

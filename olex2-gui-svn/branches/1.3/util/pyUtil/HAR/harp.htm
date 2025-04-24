@@ -1,0 +1,31 @@
+<!-- #include tool-top gui\blocks\tool-top.htm;image=#image;onclick=#onclick;1; -->
+
+<!-- #include tool-row-help gui\blocks\tool-row-help.htm;name='HAR_HEADER';help_ext=Basis_Sets_and_Method;1; -->
+
+<td><font size="+1"><b>HARt was in fovour of the new, more advanced NoSpherA2.</b><br>DOI: 10.1039/D0SC05526C. Please refer to the online documentation at olexsys.org for instructons.</font></td>
+
+<!-- #include row_table_off gui\blocks\row_table_off.htm;1; -->
+
+<!-- #include tool-row-help gui\blocks\tool-row-help.htm;name='HAR_HEADER';help_ext=Hirshfeld_Atom_Refinement;1; -->
+<td align='right'><b>Samples:</b></td>
+
+  $+
+    html.Snippet(GetVar(default_link),
+    "value=epoxide",
+    "name=SAMPLE1",
+    "onclick=spy.NoSpherA2.sample_folder('epoxide')",
+    "td1=<td width='18%'>"
+    )
+  $-
+
+  $+
+    html.Snippet(GetVar(default_link),
+    "value=alanine",
+    "name=SAMPLE2",
+    "onclick=spy.NoSpherA2.sample_folder('alanine')",
+    "td1=<td width='18%'>"
+    )
+  $-
+
+
+<!-- #include row_table_off gui\blocks\row_table_off.htm;1; -->

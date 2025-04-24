@@ -1,0 +1,114 @@
+<!-- #include tool-top gui\blocks\tool-top.htm;image=#image;onclick=#onclick;1; -->
+
+<!-- FIRST ROW -->
+<!-- #include tool-row-help gui\blocks\tool-row-help.htm;name='SELECT_ATOMS';help_ext=Select_Atoms;1 -->
+
+  <td width = "30%">
+    %Exclusive%:
+
+    $+
+    html.Snippet(GetVar(default_link),
+    "value=Sucrose",
+    "onclick=reap GetVar(sample_dir)/sucrose/sucrose",
+    )$-
+
+
+    <a href="sel -u>> sel $C">C</a>&nbsp;
+    <a href="sel -u>> sel $H">H</a>&nbsp;
+    <a href="sel -u>> sel $N">N</a>&nbsp;
+    <a href="sel -u>> sel $O">O</a>&nbsp;
+  </td>
+  <td width = "30%" colspan = 2>
+    %Additive%:
+    <a href="sel -a">%All%</a>&nbsp;
+    <a href="sel $C">C</a>&nbsp;
+    <a href="sel $H">H</a>&nbsp;
+    <a href="sel $N">N</a>&nbsp;
+    <a href="sel $O">O</a>&nbsp;
+  </td>
+
+  <td width = "40%" align='right' colspan = 2>
+$spy.MakeElementButtonsFromFormula('select', 'select')
+  </td>
+
+<!-- #include row_table_off gui\blocks\row_table_off.htm;1; -->
+
+
+<!-- SECOND ROW -->
+<!-- #include tool-row-help gui\blocks\tool-row-help.htm;name='SELECTIONS';help_ext=Selections;1 -->
+
+  <td width='100%'>
+    <b>%With Selection%:</b>
+    <a href="sel -i">%Invert%</a> |
+    <a href="sel -u">%Deselect%</a> |
+    <a href="kill sel">%Delete%</a> |
+    <a href="selback">%Previous%</a>
+  </td>
+<!-- #include row_table_off gui\blocks\row_table_off.htm;1; -->
+
+<!-- THIRD ROW -->
+<!-- #include tool-row-help gui\blocks\tool-row-help.htm;name='SELECT_CRITERIA';help_ext=Select-Criteria;1 -->
+  <td width='30%' VALIGN='center' >
+    %Select atoms where% <b>U<sub>iso</sub></b>
+  </td>
+
+
+  <td VALIGN='center' width='8%'>
+$+
+    html.Snippet(
+      "gui/snippets/input-combo",
+      "name=COMPARE_OPERATOR",
+      "items=>;=;<",
+      "value=>",
+      "manage=True"
+    )
+$-
+  </td>
+
+
+  <td VALIGN='center' width='10%'>
+$+
+    html.Snippet(
+      "gui/snippets/input-text",
+      "name=UISO",
+      "value=0.06",
+    )
+$-
+  </td>
+
+  <td width='20%' align='right'>
+  $spy.MakeHoverButton('small-Select@uiso',"sel atoms where xatom.uiso html.getvalue(COMPARE_OPERATOR) html.getvalue(UISO)&&xatom.type!='Q'")
+  </td>
+<!-- #include row_table_off gui\blocks\row_table_off.htm;1; -->
+
+
+
+<!-- FOURTH ROW -->
+<!-- #include tool-row-help gui\blocks\tool-row-help.htm;name='SELECT_RINGS';help_ext=Select_Rings;1 -->
+  <td width='25%' VALIGN='center' >
+    %Select Rings%
+  </td>
+
+  <td VALIGN='center' width='30%'>
+    <font size='$GetVar(HtmlFontSizeControls)'>
+    <input
+      type="combo"
+      height="$GetVar(HtmlComboHeight)"
+      bgcolor="$GetVar(HtmlInputBgColour)"
+      name="RINGSELECT"
+      items="'--;C6;C5N;C5;C5O;'"
+      width="100%"
+      onchange="if strcmp(html.GetValue(~name~),'--') then html.SetFocus('~name~') else 'sel -u'>>sel rings html.GetValue('~name~')"
+      value=""
+    >
+    </font>
+  </td>
+  <td ALIGN='right' width='45%'>
+    <a href="sel rings C6"><b>%Phenyl%</b></a>&nbsp;
+    <a href="sel rings C5N"><b>%Pyridine%</b></a>
+  </td>
+<!-- #include row_table_off gui\blocks\row_table_off.htm;1; -->
+
+<!-- #include tool-footer gui\blocks\tool-footer.htm;colspan=2;1; -->
+
+<!-- %select@uiso-target% -->

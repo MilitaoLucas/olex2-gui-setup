@@ -1,0 +1,110 @@
+<td width='10%'>
+View
+</td>
+
+<td width='25%'>
+  <font size='$GetVar(HtmlFontSizeControls)'>
+  <input
+    type="combo"
+    height="$GetVar(HtmlComboHeight)"
+    bgcolor="$GetVar(HtmlInputBgColour)"
+    name="SET_SNUM_XGRID_VIEW_#suffix"
+    items='plane;contour;contour+plane;surface;wire;points'
+    value="$spy.GetParam(snum.xgrid.view)"
+    onchange="spy.SetParam(snum.xgrid.view,html.GetValue(~name~))
+>>spy.gui.maps.SetXgridView()
+>>html.Update"
+    valign="center"
+    readonly
+  >
+  </font>
+</td>
+
+
+<!-- #ignoreif not(or(strcmp(xgrid.RenderMode(),'contour+plane'),strcmp(xgrid.RenderMode(),'plane')))
+<td width='10%'>
+Colours
+</td>
+
+<td width='10%'>
+  <input
+    type="combo"
+    height="$GetVar(HtmlComboHeight)"
+    width='30'
+    bgcolor="$GetVar(HtmlInputBgColour)"
+    name="SET_SNUM_XGRID_HEAT_COLOURS#suffix"
+    items='2;3;5;7'
+    value="$spy.GetParam(snum.xgrid.heat_colours)"
+    onchange="spy.SetParam(snum.xgrid.heat_colours,html.GetValue(~name~))
+>>spy.gui.maps.SetXgridView()
+>>html.Update"
+    valign="center"
+    readonly
+  >
+</td>
+
+<td width='15%'>
+min:
+<b>
+$spy.gui.maps.Round(xgrid.GetMin(),3)
+</b>
+</td>
+
+<td width='15%'>
+max:
+<b>
+$spy.gui.maps.Round(xgrid.GetMax(),3)
+</b>
+</td>
+
+
+<!--<td width='10%' align='centre'>-->
+<!--<b>-->
+<!--<input-->
+  <!--type='label'-->
+  <!--value='spy.gui.maps.Round(xgrid.GetMax(),3)'-->
+  <!--name='XGRID_MAX'-->
+  <!--width='100%'-->
+  <!--bgcolor="GetVar(HtmlTableBgColour)"-->
+<!-->-->
+<!--</b>-->
+<!--</td>-->
+
+
+#ignoreif -->
+
+
+
+
+<!-- #ignoreif or(strcmp(xgrid.RenderMode(),'contour+plane'),strcmp(xgrid.RenderMode(),'plane'),strcmp(xgrid.RenderMode(),'contour'))
+
+<td width='12%'>
+Extended
+</td>
+
+<td width='8%'>
+  <font size='$GetVar(HtmlFontSizeControls)'>
+  <input
+    type="checkbox"
+    name="SET_SNUM_XGRID_EXTENDED_#suffix"
+    fgcolor="GetVar('HtmlFontColour')"
+    bgcolor="GetVar('HtmlTableBgColour')"
+    checked="$spy.GetParam(snum.xgrid.extended)"
+    oncheck="spy.SetParam(snum.xgrid.extended,True)
+>>spy.gui.maps.SetXgridView()
+>>html.Update"
+  onuncheck="spy.SetParam(snum.xgrid.extended,False)
+>>spy.gui.maps.SetXgridView()
+>>html.Update"
+  valign="center"
+  >
+  </font>
+</td>
+#ignoreif -->
+
+
+
+<td align='right'>
+  <a href="editmaterial XGrid">%Edit% %style%</a>
+  <!--<a href="sel WBox">%Select% %Volume%</a>-->
+</td>

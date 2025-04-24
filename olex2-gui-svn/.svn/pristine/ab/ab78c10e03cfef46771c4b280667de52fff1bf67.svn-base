@@ -1,0 +1,12 @@
+<input
+  type='combo'
+  bgcolor="$GetVar(HtmlInputBgColour)"
+  width='100%'
+  height="$GetVar(HtmlComboHeight)"
+  name='SET_#scope_#prg_type_PROGRAM'
+  value='$spy.GetParam(#scope.#prg_type.program)'
+  items='$spy.get_#prg_type_programs(#scope)'
+  label=''
+  onchange="spy.set_#prg_type_program(html.GetValue(~name~),,#scope)>>html.Update"
+  readonly='true'
+>

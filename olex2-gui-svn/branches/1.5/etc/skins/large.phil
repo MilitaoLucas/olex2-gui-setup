@@ -1,0 +1,152 @@
+
+gui {
+
+  font_size_steps = 1800 1400 1200 1000 800
+    .type = strings
+  font_size_rel_size = '+3' '+2' '+1' '0' '-1' '-2'
+    .type = strings
+
+  skin {
+    extension = large
+    size_factor = 2
+    icon_size = 42
+    }
+  
+  htmlpanelwidth = 700
+  
+  html {
+    font_name = "Bahnschrift"
+    bg_colour = #ffffff
+    font_colour = #442244
+    font_size = 4
+    font_size_controls = 3
+    font_size_large = 6
+    font_size_extra_large = 8
+    font_size_medium = 5
+    formula_size = 5
+    input_height = 28
+    checkbox_height = 39
+    checkbox_width = 39
+    checkbox_width_2 = 38
+    combo_width_2 = 50
+    combo_height = 28
+    spin_height = 28
+    table_firstcol_width = 22
+  }
+
+    timage{
+      font_size = 15
+      adval = 13
+      info_size_scale = 8
+
+      snumtitle{
+        scale = 2
+        height = 65
+        font_size = 30
+        top = 1
+        left = 5
+        filefullinfo_size = 16
+        sginfo_scale = 1.6
+        corner_rad = 5
+      }
+
+
+    tab{
+      scale = 2
+      height = 42
+      corner_rad = 5
+      font_size = 27
+      top = 8
+      left = 6
+      rounded = 1100
+      arrows = "bar:top:8"
+    }
+
+    cbtn{
+      scale = 1
+      height = 35
+      corner_rad = 2
+      font_size = 24
+      top = 3
+      left = 3
+      rounded = 0101
+      arrows = "bar:right:40,arrow_right:onup:offdown:hoverdown:hoveronup"
+
+      vline = 40
+      dot_size = 6
+      dot_pad = 1
+      dot_left = 1
+      dot_colour_off = #dedede
+      dot_colour_on = #444444
+      border = 1
+    }
+
+    button{
+      scale = 1
+      height = 26
+      corner_rad = 3
+      rounded = 0000
+      font_size = 16
+      top = 3
+      left = 4
+      buttonmark = 2:#999999:6
+      border = 1
+    }
+
+    small_button{
+      rounded = 0000
+      scale = 1
+      width = 85
+      height = 25
+      buttonmark = 2:#999999:6
+    }
+
+    tinybutton{
+      scale = 2
+      height = 28
+      width = 28
+      corner_rad = 0
+      rounded = 0000
+      font_size = 24
+      top = -1
+      left = 0
+      border = 1
+    }
+
+
+    hos{
+      height = 29
+      font_size = 22
+    }
+
+
+
+    h1{
+      scale = 2
+      grad_step = 0.2
+      height = 34
+      corner_rad = 3
+      rounded = 1111
+      font_size = 24
+      top = 2
+      left = 14
+      arrows = "bar:left:10"
+      border = 1
+      border_colour = #dddddd
+    }
+
+    h3{
+      scale = 2
+      height = 29
+      info_circle = 52
+      width_adjust = 4
+      corner_rad = 3
+      rounded = 1111
+      font_size = 22
+      top = 2
+      left = 12
+      arrows = "bar:left:8"
+      border = 1
+    }
+  }
+  }

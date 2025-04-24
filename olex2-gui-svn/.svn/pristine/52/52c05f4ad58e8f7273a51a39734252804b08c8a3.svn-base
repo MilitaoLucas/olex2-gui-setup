@@ -1,0 +1,394 @@
+<!-- #include tool-top gui\blocks\tool-top.htm;image=#image;onclick=#onclick;1; -->
+
+<!-- #include snippet-quick-atom-properties gui\snippets\snippet-quick-atom-properties.htm;scope=settings;1 -->
+
+<!-- #include snippet-quick-bond-properties gui\snippets\snippet-quick-bond-properties.htm;scope=settings;1 -->
+
+<!-- #include tool-row-help gui\blocks\tool-row-help.htm;name='BACKGROUND';help_ext=Background;1 -->
+
+  <td width='23%'>
+    <b>Background:</b>
+  </td>
+    $+
+    html.Snippet(GetVar(default_link),
+      "value=Colour/White [F2]",
+      "onclick=swapbg",
+    )$-
+
+    $+
+    html.Snippet(GetVar(default_link),
+      "value=Graduated [F4]",
+      "onclick=grad -i",
+    )$-
+
+    $+
+    html.Snippet(GetVar(default_link),
+      "value=Graduated Colours",
+      "onclick=grad",
+    )$-
+<!-- #include row_table_off gui\blocks\row_table_off.htm;1; -->
+
+<!-- #include tool-row-help gui\blocks\tool-row-help.htm;name='GUI_WIDTH';help_ext=GUI_Width;1 -->
+  <td width='23%'>
+    <b>%GUI Width%:</b>
+  </td>
+
+    $+
+    html.Snippet(GetVar(default_link),
+      "value=Default",
+      "onclick=panel spy.GetParam('gui.skin.name')",
+    )$-
+
+    $+
+    html.Snippet(GetVar(default_link),
+      "value=Narrow",
+      "onclick=panel 0.20",
+    )$-
+
+    $+
+    html.Snippet(GetVar(default_link),
+      "value=Wide",
+      "onclick=panel 0.40",
+    )$-
+
+  <td width='25%' align='right'>
+    Value (e.g. 520, or 0.3)
+  </td>
+  <td>
+  $+
+    html.Snippet
+    (
+      "gui/snippets/input-text",
+      "name=SKIN_WIDTH",
+      "value=''",
+      "checked=spy.GetParam(user.auto_save_view, 'False')",
+      "onleave=panel html.GetValue(~name~)"
+     )
+  $-
+  </td>
+
+<!-- #include row_table_off gui\blocks\row_table_off.htm;1; -->
+
+<!-- #include tool-row-help gui\blocks\tool-row-help.htm;name='GUI_SIDE';help_ext=GUI_Side;1 -->
+  <td width='23%'>
+    <b>GUI Left/Right</b>
+  </td>
+    $+
+    html.Snippet(GetVar(default_link),
+      "value=%htmlpanelswap%",
+      "onclick=htmlpanelswap",
+    )$-
+<!-- #include row_table_off gui\blocks\row_table_off.htm;1; -->
+
+
+<!-- #include tool-row-help gui\blocks\tool-row-help.htm;name='GUI_LINKS';help_ext=GUI_Links;1 -->
+  <td width='23%'>
+    <b>GUI Links</b>
+  </td>
+    $+
+    html.Snippet(GetVar(default_link),
+      "value=HTML Links",
+      "onclick=spy.SetParam('gui.skin.default_link',gui/snippets/gui-link-html)>>panel",
+    )$-
+
+    $+
+    html.Snippet(GetVar(default_link),
+      "value=Buttons",
+      "onclick=spy.SetParam('gui.skin.default_link',gui/snippets/gui-link-button)>>panel",
+    )$-
+
+<!-- #include row_table_off gui\blocks\row_table_off.htm;1; -->
+
+
+<!-- #include tool-row-help gui\blocks\tool-row-help.htm;name='TOOLTIPS';help_ext=Tooltips;1 -->
+  <td width='23%'>
+    <b>%Tooltips%:</b>
+  </td>
+  <td width='55%' >
+    Show tooltips when hovering
+  </td>
+  <td width="22%" align='right'>
+    $+
+      html.Snippet("gui/snippets/input-checkbox",
+      "name=SHOW_TOOLTIPS",
+      "checked=CheckState(htmlttvis)",
+      "oncheck=spy.SetParam(user.show_tooltips,1)>>html.tooltips true",
+      "onuncheck=spy.SetParam(user.show_tooltips,0)>>html.tooltips false",
+      "target=Show tooltips when hovering over a control",
+      )
+     $-
+<!-- #include row_table_off gui\blocks\row_table_off.htm;1; -->
+
+<!-- #include tool-row-help gui\blocks\tool-row-help.htm;name='LEGEND';help_ext=Legend;1 -->
+  <td width='23%'>
+    <b>%Legend%:</b>
+  </td>
+  <td width='55%' >
+    Show the legend of atom types
+  </td>
+  <td width="22%" align='right'>
+    $+
+      html.Snippet("gui/snippets/input-checkbox",
+      "name=LEGEND",
+      "checked=spy.GetParam(user.show_legend)",
+      "oncheck=spy.SetParam(user.show_tooltips,1)>>html.tooltips true",
+      "onclick=spy.SetParam(user.show_legend,html.GetState(~name~))>>legend spy.GetParam(user.show_legend)",
+      "target=Show or hide the atom type legend",
+      )
+     $-
+<!-- #include row_table_off gui\blocks\row_table_off.htm;1; -->
+
+
+<!-- #include tool-row-help gui\blocks\tool-row-help.htm;name='INFO_BAR';help_ext=Info_Bar;1 -->
+  <td width='23%'>
+    <b>%Info Bar%:</b>
+  </td>
+  <td width='55%' >
+    Show bar with structure info
+  </td>
+  <td width="22%" align='right'>
+    $+
+      html.Snippet("gui/snippets/input-checkbox",
+      "name=SHOW_INFO",
+      "checked=not(strcmp(spy.GetParam(user.show_info),0))",
+      "oncheck=spy.SetParam(user.show_info,1)>>showwindow info true",
+      "onuncheck=spy.SetParam(user.show_info,0)>>showwindow info false",
+      )
+    $-
+<!-- #include row_table_off gui\blocks\row_table_off.htm;1; -->
+
+
+<!-- #include tool-row-help gui\blocks\tool-row-help.htm;name='RESET_ALERTS';help_ext=Reset_Alerts;1 -->
+  <td width='23%'>
+    <b>%Reset Alerts%:</b>
+  </td>
+    $+
+    html.Snippet(GetVar(default_link),
+      "value=Reset All Alerts",
+      "onclick=spy.SwitchAllAlertsOn()",
+    )$-
+<!-- #include row_table_off gui\blocks\row_table_off.htm;1; -->
+
+<!-- #include tool-row-help gui\blocks\tool-row-help.htm;name='CONSOLE_LINES';help_ext=Console_Lines;1 -->
+  <td width='23%'>
+    <b>%Console Lines%</b>:
+  </td>
+  <td width='55%' >
+    Number of lines in the console
+  </td>
+  <td width='20%' align='right'>
+     <input
+       type="combo"
+       height="GetVar('HtmlComboHeight')"
+       name="LINES_OF_TEXT"
+       bgcolor="$GetVar(HtmlInputBgColour)"
+       value=""
+       items="All<--1;1<-2;5<-6;10<-11;20<-21"
+       onchange="lines html.GetValue(~name~)"
+       valign='center'
+       align='right'
+       width="100%"
+       manage
+     >
+  </td>
+<!-- #include row_table_off gui\blocks\row_table_off.htm;1; -->
+
+
+<!-- #include tool-row-help gui\blocks\tool-row-help.htm;name='Auto MORE';help_ext=Auto_MORE;1 -->
+  <td width='23%'>
+   <b>%Auto MORE%:</b>
+  </td>
+  <td align='left'>$+
+    html.Snippet("gui/snippets/input-text", "name=user_ins",
+    "width=100%",
+    "value=spy.GetParam(user.auto_insert_user_ins)",
+    "onchange=spy.SetParam(user.auto_insert_user_ins, html.GetValue(~name~))")
+   $-</td>
+<!-- #include row_table_off gui\blocks\row_table_off.htm;1; -->
+
+
+<!-- #include tool-row-help gui\blocks\tool-row-help.htm;name='SAVE_VIEW';help_ext=Auto_Save_View;1 -->
+  <td width='23%'>
+   <b>%Save View%:</b>
+  </td>
+  <td width='55%'>
+    Save the current view when exiting a structure
+  </td>
+  <td width='20%' align="right">$+
+    html.Snippet("gui/snippets/input-checkbox", "name=AUTO_SAVE_VIEW",
+     "checked=spy.GetParam(user.auto_save_view, 'False')",
+     "onclick=spy.SetParam('user.auto_save_view', html.GetState(~name~))")
+   $-</td>
+<!-- #include row_table_off gui\blocks\row_table_off.htm;1; -->
+
+
+<!-- #include tool-row-help gui\blocks\tool-row-help.htm;name='START_OLEX2_IN';help_ext=Start_Olex2_in;1 -->
+  <td width='23%'>
+    <b>Start Olex2 in:</b>
+  </td>
+  <td width='55%'>
+     Which tab Olex2 will open after restart
+  </td>
+  <td width='20%' align='right'>
+     <input
+       type="combo"
+       height="GetVar('HtmlComboHeight')"
+       name="START_WHERE"
+       bgcolor="$GetVar(HtmlInputBgColour)"
+       width="100%"
+       value="$spy.GetParam(user.start_where)"
+       items="Home;Work;View;Tools;Info"
+       onchange="spy.SetParam(user.start_where,html.GetValue(~name~))"
+       valign='center'
+       align='right'
+       readonly
+     >
+  </td>
+<!-- #include row_table_off gui\blocks\row_table_off.htm;1; -->
+
+<!-- #include tool-row-help gui\blocks\tool-row-help.htm;name='SAVE_VIEW';help_ext=Auto_Save_View;1 -->
+  <td width='23%'>
+   <b>%Load last%:</b>
+  </td>
+  <td width='55%'>
+     Load previous structure in Olex2 on startup
+  </td>
+  <td align="right">$+
+    html.Snippet("gui/snippets/input-checkbox", "name=REMEMBER_LAST",
+     "checked=spy.GetParam(user.remember_last, 'False')",
+     "onclick=spy.SetParam('user.remember_last', html.GetState(~name~))")
+   $-</td>
+<!-- #include row_table_off gui\blocks\row_table_off.htm;1; -->
+
+<!-- #include tool-row-help gui\blocks\tool-row-help.htm;name='START_OLEX2_IN';help_ext=Solo_Mode;1 -->
+  <td width='23%'>
+    <b>%Solo Mode%:</b>
+  </td>
+  <td width='55%'>
+     Only one top-level tool tab open at a time
+  </td>
+  <td width="22%" align='right'>
+    $+
+      html.Snippet("gui/snippets/input-checkbox",
+      "name=SOLO_MODE",
+      "checked=not(strcmp(spy.GetParam(user.solo),False))",
+      "oncheck=spy.SetParam(user.solo,True)",
+      "onuncheck=spy.SetParam(user.solo,False)",
+      )
+    $-
+<!-- #include row_table_off gui\blocks\row_table_off.htm;1; -->
+
+<!-- #include tool-row-help gui\blocks\tool-row-help.htm;name='MODULE-UPDATE';help_ext=Modules-Update_Notification;1 -->
+  <td width='23%'><b>%Modules Update%:</b></td>
+  <td width='55%'>
+    Display a notification dialogue when module updates available
+  </td>
+  <td width="22%" align='right'>
+    $+
+      html.Snippet("gui/snippets/input-checkbox",
+      "name=modules_notification",
+      "checked=not(spy.GetParam('user.modules.manual_update', 'false'))",
+      "onclick=spy.SetParam('user.modules.manual_update', not(html.GetState('~name~')))")
+     $-
+   </td>
+<!-- #include row_table_off gui\blocks\row_table_off.htm;1; -->
+
+<!-- #include tool-row-help gui\blocks\tool-row-help.htm;name='UNITCELL_RENDERING';help_ext=Unit_Cell_Style;1 -->
+  <td width='23%'><b>%Unit Cell Style%:</b></td>
+    $+
+    html.Snippet(GetVar(default_link),
+      "value=Cylinder",
+      "onclick=cell.Drawstyle cone",
+    )$-
+    $+
+    html.Snippet(GetVar(default_link),
+      "value=Line",
+      "onclick=cell.Drawstyle line",
+    )$-
+
+  <td width='10%' align='right'>%Width%:</td>
+  <td width="12%" align='right'>$+
+    html.Snippet("gui/snippets/input-combo", "name=unitcell_width",
+     "items='1;2;3;4;5'", "value=cell.Thickness()",
+     "onchange=cell.Thickness(html.GetValue('~name~'))")
+   $-</td>
+<!-- #include row_table_off gui\blocks\row_table_off.htm;1; -->
+
+<!-- #include tool-row-help gui\blocks\tool-row-help.htm;name='USER_DB_LOCATION';help_ext=User_Database;1 -->
+  <td width='23%'><b>%User Database%:</b></td>
+
+    $+
+    html.Snippet(GetVar(default_link),
+      "value=Location",
+      "onclick=spy.EditParams(user.report)",
+    )$-
+    $+
+    html.Snippet(GetVar(default_link),
+      "value=Manage",
+      "onclick=spy.gui.db.Manage()",
+    )$-
+
+<!-- #include row_table_off gui\blocks\row_table_off.htm;1; -->
+
+<!-- #include tool-row-help gui\blocks\tool-row-help.htm;name='MODULE-UPDATE';help_ext=Enable-Network;1 -->
+  <td width='23%'><b>%Network Operations%:</b></td>
+  <td width='55%'>
+    Enable/Disable network operations including CheckCif, CSD deposition, module installation,
+    updates, and news banner. This does <b>not</b> control <a href="UpdateOptions">Olex2 update</a>.
+  </td>
+  <td width="22%" align='right'>$+
+    html.Snippet("gui/snippets/input-checkbox", "name=settings_network",
+     "checked=spy.GetParam('olex2.network', 'True')",
+     "onclick=spy.SetParam('olex2.network', html.GetState('~name~'))>>html.Update")
+   $-</td>
+<!-- #include row_table_off gui\blocks\row_table_off.htm;1; -->
+
+<!-- #include tool-row-help gui\blocks\tool-row-help.htm;name='OLEX"_DEBUG';help_ext=Debug_Mode;1 -->
+  <td width='23%'><b>%Debug Mode%:</b></td>
+  <td width='75%'>
+  Start Olex2 in Debug Mode (Restart required)
+  <td width="22%" align='right'>$+
+    html.Snippet("gui/snippets/input-checkbox", "name=settings_debug",
+     "checked=spy.GetParam('olex2.debug', 'True')",
+     "onclick=spy.SetParam('olex2.debug', html.GetState('~name~'))>>html.Update")
+   $-</td>
+  </td>
+<!-- #include row_table_off gui\blocks\row_table_off.htm;1; -->
+
+<!-- #include tool-row-help gui\blocks\tool-row-help.htm;name='PATH';help_ext=Path;1 -->
+  <td width='23%'>
+    <b>%PATH%:</b>
+  </td>
+  <td align='left'>$+
+    html.Snippet("gui/snippets/input-text", "name=path_extra",
+    "width=100%",
+    "value=app.OptValue('path', '')",
+    "onchange=app.SetOption('path', html.GetValue('~name~'))")
+   $-</td>
+<!-- #include row_table_off gui\blocks\row_table_off.htm;1; -->
+
+<!-- #include tool-row-help gui\blocks\tool-row-help.htm;name='OpenMP';help_ext=OpenMP;1 -->
+  <td width='23%'>
+    <b>%OpenMP%:</b>
+  </td>
+  <td width='20%'>
+  Use OpenMP in olex2.refine
+  <td width="5%" align='right'>$+
+    html.Snippet("gui/snippets/input-checkbox", "name=use_openmp",
+     "checked=spy.GetParam('user.refinement.use_openmp')",
+     "onclick=spy.SetParam('user.refinement.use_openmp', html.GetState('~name~'))")
+   $-</td>
+  </td>
+  <td width='20%'>
+  Max. Memory (MB)
+  <td width="5%" align='right'>
+    $+
+    html.Snippet("gui/snippets/input-text", "name=openmp_mem",
+     "value=spy.GetParam('user.refinement.openmp_mem')",
+     "onchange=spy.SetParam('user.refinement.openmp_mem', html.GetValue('~name~'))")
+   $-</td>
+  </td>
+<!-- #include row_table_off gui\blocks\row_table_off.htm;1; -->
+
+
+<!-- #include tool-footer gui\blocks\tool-footer.htm;1; -->

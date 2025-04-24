@@ -1,0 +1,50 @@
+<tr>
+  <td width="2" bgcolor="$GetVar(HtmlTableFirstcolColour)"></td>
+  <td width='70' align='left' colspan='2'>
+<!-- #include tool-h3 gui\blocks\tool-h3.htm;image=#image;1; -->
+
+</tr>
+
+<tr><td></td><td colspan='2'>
+<table border="0" VALIGN='center' style="border-collapse: collapse" width="100%" cellpadding="1" cellspacing="1" bgcolor="$GetVar(HtmlTableBgColour)">
+<tr>
+  <td width="8" bgcolor="$GetVar(HtmlTableFirstcolColour)"></td>
+  <zimg border="0" src="toolbar-dimas.png"></td>
+  <td>
+  &nbsp;<a href="spy dimas info">Get Info on Current Structure</a></td>
+  </tr>
+
+  <tr>
+  <td width="8" bgcolor="$GetVar(HtmlTableFirstcolColour)"></td>
+  <zimg border="0" src="toolbar-dimas.png"></td>
+  <td><font size='2'>
+  <input 
+    type="text" 
+    bgcolor="$GetVar(HtmlInputBgColour)" 
+    name="id" float 
+    width="30" float 
+    height="18" 
+    value="$spy.GetParam(gui.archive_last)"
+  />
+  </font>
+  <input 
+    type="button" 
+    name = "load" 
+    width="35" 
+    height="18" 
+    value="Load"
+    onclick = "spy dimas load getvalue(id)"
+  />
+  </td>
+  </tr>
+
+  <tr>
+  <td width="8" bgcolor="$GetVar(HtmlTableFirstcolColour)"></td>
+  <zimg border="0" src="toolbar-dimas.png"></td>
+  <td>
+  &nbsp;<a href="spy dimas archive">Archive Files</a></td>
+  </tr>
+
+</table>
+  </td>
+</tr>

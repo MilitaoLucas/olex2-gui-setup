@@ -1,0 +1,119 @@
+gui {
+  base_colour = #b6b6b6
+  logo_colour = #014e8f
+  htmlpanelwidth = 520
+  red = #aa0000
+  orange = #ff740e
+  green = #00aa00
+  skin {
+    name = "OD"
+    logo_name = etc/skins/OD.png
+  }
+
+  html {
+    base_colour = #b6b6b6
+    font_colour = #222244
+    bg_colour = #cecece
+    highlight_colour = #ff7800
+    input_bg_colour = #cecece
+    link_colour = #585886
+    table_bg_colour = #bcbcbc
+    table_firstcol_colour = #bbbbbb
+  }
+  timage {
+    base_colour = None
+    grad_colour = None
+    font_colour = None
+    bg_colour_L = 0.8
+    grad_colour_L = 0.7
+    font_colour_L = 1.4
+    snumtitle {
+      base_colour = None
+      grad_colour = #527bde
+      font_colour = None
+      font_colour_L = 1.4
+      bg_colour_L = 1.4
+      grad_step = 0.4
+      grad_colour_L = 0.75
+      filefullinfo_colour = '(221, 221, 221)'
+      filefullinfo_colour_L = 1.3
+    }
+    tab {
+      base_colour = None
+      grad_colour = #527bde
+      font_colour = None
+      height = 30
+      corner_rad = 3
+      grad_step = 0.5
+      bg_colour_L = 0.7
+      grad_colour_L = 0.7
+      font_colour_L = 1.4
+      font_size = 16
+      top = 6
+      rounded = "1100"
+      arrows = "bar:top:3"
+      off_L = 0.8
+    }
+    
+    cbtn{
+      base_colour = None
+      grad_colour = None
+      font_colour = None
+      height = 24
+      corner_rad = 2
+      grad_step = 0.1
+      bg_colour_L = 1.4
+      grad_colour_L = 1.3
+      font_colour_L = 0.8
+      font_name = Vera Bold
+      font_size = 16
+      top = 3
+      left = 3
+      off_L = 1.2
+    }
+    
+    button {
+      grad_colour = #e1e1e1
+      grad_step = 0.3
+      height = 18
+      top = 2
+      bg_colour_L = 1.8
+      grad_colour_L = 1.9
+      font_colour_L = 0.7
+      font_colour = #767676
+    }
+    h1 {
+      base_colour = None
+      grad_colour = #527bde
+      height = 21
+      font_size = 14
+      top = 2
+      left = 4
+      bg_colour_L = 1.2
+      grad_colour_L = 0.9
+      font_colour_L = 1.5
+      font_colour = #ffffff
+      arrows = "bar:left:5,char:on~:off+"
+      off_L = 0.8
+    }
+    h3 {
+      height = 18
+      base_colour = None
+      grad_colour = None
+      font_colour = None
+      bg_colour_L = 1.2
+      grad_colour_L = 0.95
+      font_colour_L = 0.5
+      corner_rad = 3
+      top = 1
+      left = 4
+      arrows = "bar:left:4,char:on~:off+"
+      off_L = 0.6
+    }
+  }
+  button_colouring = #dddddd
+  button_writing = #777777
+  tab_colour = #5563a4
+  grad_top_left = #1f3257
+  grad_top_right = #1f3257
+}

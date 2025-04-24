@@ -1,0 +1,60 @@
+<!-- #include tool-top gui\blocks\tool-top.htm;image=#image;onclick=#onclick;1; -->
+
+<!-- FIRST ROW -->
+<!-- #include tool-row-help gui\blocks\tool-row-help.htm;name='QUICK_DRAWING_STYLES';help_ext=Quick-Drawing-Styles;1 -->
+<!-- #include snippet-quick-drawing-styles gui\snippets\snippet-quick-drawing-styles.htm;1; -->
+
+<td width='5%'>
+Legend
+</td>
+
+<td width='5%'>
+    <font size="$GetVar('HtmlFontSizeControls')">
+    <input
+      type="checkbox"
+      name = "LEGEND#scope"
+      fgcolor="GetVar('HtmlFontColour')"
+      bgcolor="GetVar('HtmlTableBgColour')"
+      checked="spy.GetParam(user.show_legend)"
+      onclick="spy.SetParam(user.show_legend,html.GetState(~name~))>>legend spy.GetParam(user.show_legend)"
+      target="Show or hide the atom type legend"
+    >
+    </font>
+</td>
+
+$+
+  html.Snippet(GetVar(default_link),
+    "value=Default",
+    "onclick=default",
+    "td1=<td width='15%'>"
+  )
+$-
+
+$+
+  html.Snippet(GetVar(default_link),
+    "value=Light",
+    "onclick=load style basedir()\etc\styles\uranus.glds",
+    "td1=<td width='15%'>"
+  )
+$-
+
+<!-- #include row_table_off gui\blocks\row_table_off.htm;1; -->
+
+
+<!-- #include snippet-quick-atom-properties gui\snippets\snippet-quick-atom-properties.htm;scope=quick;1; -->
+
+<!-- #include snippet-quick-bond-properties gui\snippets\snippet-quick-bond-properties.htm;scope=quick;1; -->
+
+<!-- #include snippet-graphical-objects gui\snippets\snippet-graphical-objects.htm;1; -->
+
+<!-- #include align-and-lock gui\tools\align-and-lock.htm;name='ALIGN_AND_LOCK';scope=qds;1 -->
+
+<!-- #include tool-row-help gui\blocks\tool-row-help.htm;name=ADD_FOG; help_ext=add_fog;1; -->
+<!-- #include add-fog gui\snippets\snippet-add-fog.htm;1; -->
+<!-- #include row_table_off gui\blocks\row_table_off.htm;1; -->
+
+
+
+<!-- #include tool-footer gui\blocks\tool-footer.htm;colspan=2;1; -->
+
+<!-- %Wireframe%, %Tubes%, %Polyhedra%, %Ellipsoids%, %Balls and Sticks%, %quick-target% -->

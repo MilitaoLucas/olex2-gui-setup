@@ -1,0 +1,89 @@
+<!-- #include tool-top gui\blocks\tool-top.htm;image=#image;onclick=#onclick;1; -->
+
+<!-- #include tool-row-help gui\blocks\tool-row-help.htm;name='SORTING_ROW_0';help_ext=Sort-order;1 -->
+   <td width="20%"><b>Sort order</b></td>
+   <td width="20%">$+
+     html.Snippet("gui/snippets/input-combo", "name=sorting_cat1",
+      "value=spy.GetParam('user.sorting.cat1', 'Part')",
+      "items=None<-;Z<-z;Mass<-m;Label<-l;Part<-p;Suffix<-s;Numeric<-n",
+      "onchange=spy.SetParam('user.sorting.cat1', html.GetValue('~name~'))")
+    $-</td>
+   <td width="20%">$+
+     html.Snippet("gui/snippets/input-combo", "name=sorting_cat2",
+      "value=spy.GetParam('user.sorting.cat2', 'Z')",
+      "items=None<-;Z<-z;Mass<-m;Label<-l;Part<-p;Suffix<-s;Numeric<-n",
+      "onchange=spy.SetParam('user.sorting.cat2', html.GetValue('~name~'))")
+    $-</td>
+   <td width="20%">$+
+     html.Snippet("gui/snippets/input-combo", "name=sorting_cat3",
+      "value=spy.GetParam('user.sorting.cat3', 'Label')",
+      "items=None<-;Z<-z;Mass<-m;Label<-l;Part<-p;Suffix<-s;Numeric<-n",
+      "onchange=spy.SetParam('user.sorting.cat3', html.GetValue('~name~'))")
+    $-</td>
+   <td width="20%">$+
+     html.Snippet("gui/snippets/input-combo", "name=sorting_cat4",
+      "value=spy.GetParam('user.sorting.cat4', 'None')",
+      "items=None<-;Z<-z;Mass<-m;Label<-l;Part<-p;Suffix<-s;Numeric<-n",
+      "onchange=spy.SetParam('user.sorting.cat4', html.GetValue('~name~'))")
+    $-</td>
+<!-- #include row_table_off gui\blocks\row_table_off.htm;1; -->
+
+<!-- #include tool-row-help gui\blocks\tool-row-help.htm;name='SORTING_ROW_1';help_ext=Moiety;1 -->
+   <td width="20%"><b>Moiety</b></td>
+   <td width="40%">$+
+     html.Snippet("gui/snippets/input-combo", "name=sorting_moiety",
+      "value=spy.GetParam('user.sorting.moiety', 'Size')",
+      "items=None<-;From sort<-default;Size<-s;Heaviest atom<-h;Mass<-m",
+      "onchange=spy.SetParam('user.sorting.moiety', html.GetValue('~name~'))")
+    $-</td>
+   <td width="35%" align='left'>Treat H atoms independently</td>
+   <td width="5%" align='right'>$+
+     html.Snippet("gui/snippets/input-checkbox", "name=sorting_h",
+      "checked=spy.GetParam('user.sorting.h', 'false')",
+      "onclick=spy.SetParam('user.sorting.h', html.GetState('~name~'))")
+    $-</td>
+
+<!-- #include row_table_off gui\blocks\row_table_off.htm;1; -->
+
+<!-- #include tool-row-help gui\blocks\tool-row-help.htm;name='SORTING_ROW_1';help_ext=Specific-order;1 -->
+   <td><b>Specific order</b></td>
+   </tr><tr><td>
+     <table cellsapcing="0" cellpadding="0" width="100%"><tr>
+       <td width="11%">Atoms</td>
+       <td width="50%" align="right">$+
+         html.Snippet("gui/snippets/input-text", "name=sort_atom_order",
+         "width=100%",
+         "value=GetVar('sorting.atom_order', '')",
+         "onchange=SetVar('sorting.atom_order', html.GetValue('~name~'))")
+       $-</td>
+       <td width="5%" align='right'>$+
+         html.Snippet("gui/snippets/input-checkbox", "name=atom_sequence_inplace",
+         "value=Reorder ", "right=true", "manage=true",
+         "onclick=html.SetState('atom_sequence_first','false')")
+       $-</td>
+       <td width="5%" align='right'>$+
+         html.Snippet("gui/snippets/input-checkbox", "name=atom_sequence_first",
+         "value=Move to first ", "right=true", "manage=true",
+         "onclick=html.SetState('atom_sequence_inplace','false')")
+       $-</td>
+     </tr></table>
+   </td></tr><tr><td>
+     <table cellsapcing="0" cellpadding="0" width="100%"><tr>
+       <td width="11%">Moieties</td>
+       <td width="50%" align="right">$+
+         html.Snippet("gui/snippets/input-text", "name=sort_moiety_order",
+          "width=100%",
+          "value=GetVar('sorting.moiety_order', '')",
+          "onchange=SetVar('sorting.moiety_order', html.GetValue('~name~'))")
+       $-</td>
+      <td width="18%" align='right'>
+        $spy.MakeHoverButton("small-Sort","spy.gui.do_sort()")
+      </td>
+  </tr></table></td>
+
+<!-- #include row_table_off gui\blocks\row_table_off.htm;1; -->
+
+
+<!-- #include tool-footer gui\blocks\tool-footer.htm;colspan=2;1; -->
+
+<!-- %mass & label%, %atom label%, %atomic mass%, %moieties% -->

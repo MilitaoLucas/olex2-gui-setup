@@ -1,0 +1,60 @@
+<!-- #include tool-top gui\blocks\tool-top.htm;image=#image;onclick=#onclick;1; -->
+
+<!-- FIRST ROW -->
+<!-- #include tool-row-help gui\blocks\tool-row-help.htm;name='MEAN_PLANE';help_ext=Mean Plane and Best Line;1 -->
+
+    $+
+    html.Snippet(GetVar(default_link),
+    "value=Mean Plane",
+    "hint=Select at least three atoms to calculate the mean plane",
+    "onclick=mpln sel",
+    )$-
+
+    $+
+    html.Snippet(GetVar(default_link),
+    "value=Best Line",
+    "hint=Select any number of atoms to calculate the best line",
+    "onclick=line sel",
+    )$-
+
+
+<!-- #include row_table_off gui\blocks\row_table_off.htm;1; -->
+
+
+<!-- SECOND ROW -->
+<!-- #include tool-row-help gui\blocks\tool-row-help.htm;name='BEST_LINE';help_ext=Distances And Angles;1 -->
+    $+
+    html.Snippet(GetVar(default_link),
+    "value=Distances and Angles",
+    "hint=Select objects to calculate distances and angles",
+    "onclick=esd",
+    )$-
+
+    $+
+    html.Snippet(GetVar(default_link),
+    "value=Refine and Save e.s.d info",
+    "hint=Select any number of atoms to calculate the best line",
+    "onclick=delins more>>addins more -3>>refine",
+    )$-
+<!-- #include row_table_off gui\blocks\row_table_off.htm;1; -->
+
+<!-- THIRD ROW -->
+<!-- #include tool-row-help gui\blocks\tool-row-help.htm;name='DISTANCES_AND_ANGLES';help_ext=Analyse Interactions;1 -->
+    $+
+    html.Snippet(GetVar(default_link),
+    "value=Analyse &pi;-&pi; Interactions",
+    "hint=Select objects to calculate distances and angles",
+    "onclick=fuse>>pipi -g",
+    )$-
+
+    $+
+    html.Snippet(GetVar(default_link),
+    "value=Analyse Hydrogen Bonds",
+    "hint=Select any number of atoms to calculate the best line",
+    "onclick=fuse>>htab -g",
+    )$-
+<!-- #include row_table_off gui\blocks\row_table_off.htm;1; -->
+
+
+
+<!-- #include tool-footer gui\blocks\tool-footer.htm;colspan=2;1; -->

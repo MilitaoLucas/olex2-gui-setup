@@ -1,0 +1,134 @@
+<!-- #include tool-top gui\blocks\tool-top.htm;image=#image;onclick=#onclick;1; -->
+
+<!-- FIRST ROW -->
+<!-- #include tool-row-help gui\blocks\tool-row-help.htm;name='TOOLBAR_MODEL';help_ext=Toolbar-Model;1 -->
+<!-- #include main-toolbar-2 gui\main-toolbar-2.htm;1; -->
+<!-- #include row_table_off gui\blocks\row_table_off.htm;1; -->
+
+<!-- SECOND ROW -->
+<!-- #include tool-row-help gui\blocks\tool-row-help.htm;name='QUICKTOOLS';help_ext=Quicktools;1 -->
+  <td width='8%'>
+$spy.MakeHoverButton('toolbar-QC','name \$Q C')
+  </td>
+  <td width='8%'>
+$spy.MakeHoverButton('toolbar-QH','name \$Q H')
+  </td>
+  <td width='8%'>
+$spy.MakeHoverButton('toolbar-tidy','clean')
+  </td>
+  <td width='8%'>
+$spy.MakeHoverButton('toolbar-killH','kill \$H')
+  </td>
+  <td width='8%'>
+$spy.MakeHoverButton('toolbar-Q','showQ')
+  </td>
+  <td width='8%'>
+$spy.MakeHoverButton('toolbar-H','showH')
+  </td>
+  <td width='8%'>
+$spy.MakeHoverButton('toolbar-center','compaq>>compaq -a>>center')
+  </td>
+  
+<td width='10%'>
+</td>
+
+
+<td width='4%' align='left'>
+  <font size=$GetVar(HtmlFontSizeControls)>
+    Z'=
+  </font>
+  </td>
+  <td width='15%' align='right'>
+    <font size='$GetVar(HtmlFontSizeControls)'>
+    <input
+      type='text'
+      width="100%"
+      height="$GetVar(HtmlComboHeight)"
+      bgcolor="spy.GetParam(gui.html.input_bg_colour)"
+      name='SET_Z_PRIME_FIXUNIT'
+      valign='center'
+      align='right'
+      value='xf.au.GetZprime()'
+      onreturn="xf.au.SetZprime(html.GetValue(~name~))>>html.update"
+      >
+    </font>
+  </td>
+  <td width = '5%'>
+$spy.MakeHoverButton('toolbar-ok',"fixunit html.GetValue('SET_Z_PRIME_FIXUNIT')>>xf.au.SetZprime(html.GetValue('SET_Z_PRIME_FIXUNIT'))>>html.Update")
+  </td>
+<!-- #include row_table_off gui\blocks\row_table_off.htm;1; -->
+
+
+<!-- #include tool-row-help gui\blocks\tool-row-help.htm;name=PART_LINKS; help_ext=Part-Links;1; -->
+  <td width='15%'>
+    <b>Show</b>
+  </td>
+  <td width='85%' align='right'>
+    <a href='ShowP 0 1'><b>PART</b> 0 1</a> | 
+    <a href='ShowP 0 2'>0 2</a> |
+    <a href='ShowP 0 -1'><b>PART</b> 0 -1</a> | 
+    <a href='ShowP 0 -2'>0 -2</a> |
+    <a href='ShowP 0 3'><b>PART</b> 0 3</a> | 
+    <a href='ShowP 0 4'>0 4</a> |
+    <a href='ShowP'><b>All PARTS</b></a>
+  </td>
+<!-- #include row_table_off gui\blocks\row_table_off.htm;1; -->
+
+
+<!-- THIRD ROW -->
+<!-- #include tool-row-help gui\blocks\tool-row-help.htm;name='LABELS';help_ext=Labels;1 -->
+  <td name=LABEL_COMBO_BOX_LABEL width='15%'>
+    <b>%Labels%</b>
+  </td>
+  <td width='45%' align='left' name=COMBO_LABEL_COMBO_BOX>
+    <font size="$GetVar('HtmlFontSizeControls')">
+    <input
+      type='combo'
+      width='100%'
+      height="$GetVar('HtmlInputHeight')"
+      name='set_label_content'
+      value=''
+      items="'%Toggle On/Off%<-;%Atom Names%<-l;%Crystallographic Occupancy%<-o;%Chemical Occupancy%<-co;%Parts%<-p;%Link-Code%<-v;%H Atom Labels%<-h l;%Fixed Parameters%<-f;Variables<-v;AFIX Commands<-h a;Q Peak Intensities<-qi'"
+      bgcolor="$GetVar('HtmlInputBgColour')"
+      onchange="spy.ChooseLabelContent(html.GetValue('~name~'))"
+      readonly='readonly'
+    >
+    </font>
+  </td>
+  <td width='40%' align='right'>
+    <a href='labels -o'>OCCU</a> |
+    <a href='labels -co'>Chem OCCU</a> |
+    <a href='labels -p'>PARTS</a>
+  </td>
+<!-- #include row_table_off gui\blocks\row_table_off.htm;1; -->
+
+
+<!-- FOURTH ROW -->
+<!-- #include q-peak-slider gui\snippets\snippet-q-peak-slider.htm;1; -->
+
+<!-- FIFTH ROW -->
+<!-- #include uiso-slider gui\snippets\snippet-uiso-select-slider.htm;1; -->
+
+
+<!-- #include tool-row-help gui\blocks\tool-row-help.htm;name='MODEL_DISORDER';help_ext=Model-Disorder;1 -->
+<!-- #include model-disorder gui\snippets\snippet-model-disorder.htm;1; -->
+<!-- #include row_table_off gui\blocks\row_table_off.htm;1; -->
+
+
+<!-- #include tool-row-help gui\blocks\tool-row-help.htm;name='FIT_GROUP';help_ext=Fit-Group;1 -->
+<!-- #include fit-group gui\snippets\snippet-fit-group.htm;1; -->
+<!-- #include row_table_off gui\blocks\row_table_off.htm;1; -->
+
+
+<!-- #includeif IsFileType('ires') tool-row-help gui\blocks\tool-row-help.htm;name='ELECTRON_DENSITY';help_ext=Electron-Density;1 -->
+<!-- #includeif IsFileType('ires') calculate-electron-density gui\snippets\snippet-electron-density-map.htm;1; -->
+<!-- #includeif IsFileType('ires') row_table_off gui\blocks\row_table_off.htm;1; -->
+
+
+<!-- #include h3-growing gui\h3-growing.htm;gui\blocks\tool-h3-off.htm;image=h3-growing;onclick=;colspan=1;2; -->
+
+
+<!-- #include tool-footer gui\blocks\tool-footer.htm;colspan=2;1; -->
+
+
+<!-- %Electron Density Peaks% -->

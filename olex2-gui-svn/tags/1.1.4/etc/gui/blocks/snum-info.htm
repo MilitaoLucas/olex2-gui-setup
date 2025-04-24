@@ -1,0 +1,58 @@
+<font color=$spy.GetParam(gui.html.font_colour) size=$spy.GetParam(gui.html.font_size) face=$spy.GetParam(gui.html.font_name)>
+
+<zimg border="0" name=SNUMTITLE src="sNumTitle.png">
+<table border="0" style="border-collapse: collapse" width="100%" id="info-cell" cellpadding="0" cellspacing="1" bgcolor="$spy.GetParam(gui.html.table_firstcol_colour)">
+
+
+<tr>
+  <td colspan = '4'>
+  <table width='100%' cellspacing='1' cellpadding='0'>
+    <tr>
+      <td align=left>
+        &nbsp;$spy.makeFormulaForsNumInfo()
+      </td>
+      <td align=right>
+        $spy.checkErrLogFile()
+  &nbsp;$spy.MakeHoverButton(toolbar-home, 'itemstate index* 0>>itemstate index-home 1>>itemstate tab* 2')
+  &nbsp;$spy.MakeHoverButton(toolbar-edit, 'editins>>spy.doProgramSettings\(spy.GetParam\(snum.refinement.program),spy.GetParam\(snum.refinement.method))>>UpdateHtml')
+  &nbsp;$spy.MakeHoverButton(toolbar-editatom, 'editatom')
+  &nbsp;$spy.MakeHoverButton(toolbar-open, 'exec -o getvar\(defexplorer) 'filepath\()'')
+  &nbsp;$spy.MakeHoverButton(toolbar-text, 'text')
+  &nbsp;$spy.MakeHoverButton(toolbar-info, 'itemstate more-snum-info 1 2')
+     </td>
+   </tr>
+   </table>
+  </td>
+</tr>
+
+
+<tr align='left'>
+<td colspan = '3'>
+&nbsp;<b>a=</b>$xf.uc.CellEx(a)<b>; b=</b>$xf.uc.CellEx(b)<b>; c=</b>$xf.uc.CellEx(c)&Aring;
+  </td>
+  $spy.GetRInfo()
+</tr>
+  
+<tr align='left'>
+  <td colspan = '3'>
+    &nbsp;<b>&alpha;</b>=$xf.uc.CellEx(alpha)&deg;
+      <b>&beta;</b>=$xf.uc.CellEx(beta)&deg;
+      <b>&gamma;</b>=$xf.uc.CellEx(gamma)&deg;
+    </td>
+</tr>
+
+<tr>
+  <td colspan='4'>
+  </td>
+</tr>
+
+<!-- #includeif fs.Exists(hos.htm) hos hos.htm;1 -->
+
+  $spy.GetTwinLaw(html)
+
+  
+  
+<!-- #include more-snum-info gui\blocks\more-snum-info.htm;2 -->
+
+</table>
+</font>

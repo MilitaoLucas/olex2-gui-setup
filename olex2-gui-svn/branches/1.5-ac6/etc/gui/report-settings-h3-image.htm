@@ -1,0 +1,32 @@
+<!-- #include tool-h3 gui\blocks\tool-h3.htm;image=#image;colspan=1;1; -->
+
+<tr>
+<!-- #include tool-first-column gui\blocks\tool-first-column.htm;1; -->
+<!-- #include row_table_on gui\blocks\row_table_on.htm;1; -->
+  <td colspan = '1'>
+    <a href="
+cursor(busy, '%Please Wait...%')
+>>spy.SetParam(snum.report.image,filesave('Save Image as', 'png|*.png|bitmap|*.bmp',filepath()))
+>>pict -pq spy.GetParam(snum.report.image) spy.GetParam(snum.report.image_size)
+>>dire
+>>html.Update
+>>Cursor()"
+  target="Save screenshot as image">
+  <zimg border="0" src="toolbar-image.png">
+</a>
+</td>
+<td colspan='4'>
+  <input
+    type="combo"
+    height="$GetVar(HtmlComboHeight)"
+    bgcolor="spy.GetParam(gui.html.input_bg_colour)"
+    name="SET_REPORT_IMAGE"
+    readonly
+    items="file.ListDirForGui(FilePath(),'*.png;*.jpg;*.bmp')"
+    onchange="spy.SetParam(snum.report.image,html.GetValue(~name~))"
+    width="50%"
+    value="file.GetName($spy.GetParam(snum.report.image))"
+  >
+</td>
+<!-- #include row_table_off gui\blocks\row_table_off.htm;1; -->
+</tr>

@@ -1,0 +1,137 @@
+<!-- #include tool-top gui\blocks\tool-top.htm;image=#image;onclick=#onclick;1; -->
+
+<!-- FIRST ROW -->
+<!-- #include tool-row-help gui\blocks\tool-row-help.htm;name='ROTATE';help_ext=rotate;1 -->
+  <td name=LABEL_ROTATE width='15%'>
+    <b>%Rotate%:</b>
+  </td>
+  <td name=SPIN_ROTATION_X align='left'>
+    $spy.MakeHoverButton('button_tiny-:x','rota 1 math.eval(html.GetValue(rx)*-1)')
+    &thinsp;
+    <font size='$GetVar(HtmlFontSizeControls)'>
+    <input
+      type="spin"
+      name = "rx"
+      width="45"
+      height="$GetVar(HtmlSPinHeight)"
+      value="10"
+    >
+    </font>
+    &thinsp;
+    $spy.MakeHoverButton('button_tiny-x:','rota 1 html.getvalue(rx)')
+  </td>
+  <td name=SPIN_ROTATION_Y align='center'>
+    $spy.MakeHoverButton('button_tiny-:y','rota 2 math.eval(html.GetValue(ry)*-1)')
+    &thinsp;
+    <font size='$GetVar(HtmlFontSizeControls)'>
+    <input
+      type="spin"
+      name = "ry"
+      width="45"
+      height="$GetVar(HtmlSPinHeight)"
+      bgcolor="$GetVar(HtmlInputBgColour)"
+      value="10"
+    >
+    </font>
+    &thinsp;
+    $spy.MakeHoverButton('button_tiny-y:','rota 2 html.getvalue(ry)')
+  </td>
+  <td name=SPIN_ROTATION_Z align='right'>
+    $spy.MakeHoverButton('button_tiny-:z','rota 3 math.eval(html.GetValue(rz)*-1)')
+    &thinsp;
+    <font size='$GetVar(HtmlFontSizeControls)'>
+    <input
+      type="spin"
+      name = "rz"
+      width="45"
+      height="$GetVar(HtmlSPinHeight)"
+      bgcolor="$GetVar(HtmlInputBgColour)"
+      value="10"
+    >
+    </font>
+    &thinsp;
+    $spy.MakeHoverButton('button_tiny-z:','rota 3 html.getvalue(rz)')
+  </td>
+<!-- #include row_table_off gui\blocks\row_table_off.htm;1; -->
+
+<!-- SECOND ROW -->
+<!-- #include tool-row-help gui\blocks\tool-row-help.htm;name='AUTO_ROTATION';help_ext=Auto-Rotation;1 -->
+  <td name=LABEL_AUTO_ROTATION width='15%'>
+    <b>%Auto%:</b>
+  </td>
+  <td name=CHECK_X>
+    <font size='$GetVar(HtmlFontSizeControls)'>
+    <input
+      type="checkbox"
+      name = "x"
+      bgcolor="$GetVar(HtmlInputBgColour)"
+      fgcolor="$GetVar(HtmlFontColour)"
+      value="x"
+      data = "0"
+      oncheck = "html.setdata(x, '1')>>rota html.getdata(x) html.getdata(y) html.getdata(z) 100000 math.eval(html.getvalue(speed)*0.1)"
+      onuncheck="html.setdata(x, '0') >>rota html.getdata(x) html.getdata(y) html.getdata(z) 100000 math.eval(html.getvalue(speed)*0.1)"
+    >
+    </font>
+  </td>
+  <td name=CHECK_Y>
+    <font size='$GetVar(HtmlFontSizeControls)'>
+    <input
+      type="checkbox"
+      name = "y"
+      bgcolor="$GetVar(HtmlInputBgColour)"
+      fgcolor="$GetVar(HtmlFontColour)"
+      value="y"
+      data = "0"
+      oncheck = "html.setdata(y, '1')>>rota html.getdata(x) html.getdata(y) html.getdata(z) 100000 math.eval(html.getvalue(speed)*0.1)"
+      onuncheck="html.setdata(y, '0') >>rota html.getdata(x) html.getdata(y) html.getdata(z) 100000 math.eval(html.getvalue(speed)*0.1)"
+    >
+    </font>
+  </td>
+  <td name=CHECK_Z>
+    <font size='$GetVar(HtmlFontSizeControls)'>
+    <input
+      type="checkbox"
+      name = "z"
+      bgcolor="$GetVar(HtmlInputBgColour)"
+      fgcolor="$GetVar(HtmlFontColour)"
+      value="z"
+      data = "0"
+      oncheck = "html.setdata(z, '1')>>rota html.getdata(x) html.getdata(y) html.getdata(z) 100000 math.eval(html.getvalue(speed)*0.1)"
+      onuncheck="html.setdata(z, '0') >>rota html.getdata(x) html.getdata(y) html.getdata(z) 100000 math.eval(html.getvalue(speed)*0.1)"
+    >
+    </font>
+  </td>
+  <td name=SLIDER_SPEED align='center'>
+    <font size='$GetVar(HtmlFontSizeControls)'>
+    <input
+      type="slider"
+      name="speed"
+      width="70"
+      height="20"
+      bgcolor="$GetVar(HtmlTableBgColour)"
+      fgcolor="$GetVar(HtmlFontColour)"
+      value="1"
+      min="1"
+      max="10"
+      onchange = "rota html.getdata(x) html.getdata(y) html.getdata(z) 100000 math.eval(html.getvalue(speed)*0.1)"
+    >
+    </font>
+  </td>
+  <td name=XYZ align='right'>
+    $spy.MakeHoverButton('button_tiny-a','matr 1')
+    &nbsp
+    $spy.MakeHoverButton('button_tiny-b','matr 2')
+    &nbsp
+    $spy.MakeHoverButton('button_tiny-c','matr 3')
+  </td>
+<!-- #include row_table_off gui\blocks\row_table_off.htm;1; -->
+
+<!-- #include tool-row-help gui\blocks\tool-row-help.htm;name='Zoom_Slider';help_ext=Zoom-Slider;1 -->
+
+<!-- #include zoom-slider gui\snippets\snippet-zoom-slider.htm;1; -->
+
+<!-- #include row_table_off gui\blocks\row_table_off.htm;1; -->
+
+
+
+<!-- #include tool-footer gui\blocks\tool-footer.htm;colspan=2;1; -->

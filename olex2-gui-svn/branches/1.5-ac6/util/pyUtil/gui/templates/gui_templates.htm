@@ -1,0 +1,602 @@
+t:cif_export_gui{
+<font size='+0'>
+<a href='export>>html.update'>
+    Extract <b>res/hkl </b></a>
+&nbsp;
+<a href='export>>html.update>>dire'>
+    Extract and <b>open directory </b></a>
+&nbsp;
+<a href='export>>reap "%(reapfile)s"'>
+    Extract and <b>open </b>
+</a>
+</font>
+}
+
+t:cif_no_embedded_files{
+<font color=$GetVar(gui.orange)>You need a res/ins and hkl file to refine this structure</font>}
+
+
+t:part_0_and_n{
+<td align='left'>
+<font size="$GetVar('HtmlFontSizeControls')"><b>
+<input
+  type="button"
+  name="0 | %(part)s@%(scope)s"
+  value="0 | %(part)s"
+  width="100%%"
+  height="GetVar('HtmlInputHeight')"
+  onclick="freeze true>>spy.gui.tools.set_part_display(%(parts)s,%(part)s)>>freeze false>>focus"
+  bgcolor="GetVar('linkButton.bgcolor')"
+  fgcolor="GetVar('linkButton.fgcolor')"
+  custom="#custom"
+></b>
+</font>
+</td>
+
+}
+
+t:disorder_quicktool_no_options{
+
+  %(parts_display)s
+
+  <td>
+
+
+
+<font size="$GetVar('HtmlFontSizeControls')"><b>
+<input
+  type="button"
+  name="ALL@%(scope)s"
+  value="All"
+  height="GetVar('HtmlInputHeight')"
+  width="100%%"
+  onclick="showP>>focus"
+  bgcolor="$GetVar('linkButton.bgcolor')"
+  fgcolor="$GetVar('linkButton.fgcolor')"
+  custom="#custom"
+></b>
+</font>
+
+</td>
+}
+
+
+t:disorder_quicktool{
+
+  %(parts_display)s
+
+  <td>
+
+<font size="$GetVar('HtmlFontSizeControls')"><b>
+<input
+  type="button"
+  name="ALL@%(scope)s"
+  value="All"
+  width="100%%"
+  height="GetVar('HtmlInputHeight')"
+  onclick="showP>>focus"
+  bgcolor="$GetVar('linkButton.bgcolor')"
+  fgcolor="$GetVar('linkButton.fgcolor')"
+  custom="#custom"
+></b>
+</font>
+
+  </td>
+
+  <td width='4%%' align='right'>
+  Sel
+  </td>
+
+  <td width='4%%' align='right'>
+    <font size=$GetVar(HtmlFontSizeControls)>
+    <input
+      type='checkbox'
+      bgcolor="GetVar('HtmlTableBgColour')"
+      name='SELECT_PARTS@%(scope)s'
+      checked="spy.GetParam('user.parts.select')"
+      oncheck="spy.SetParam('user.parts.select','true')"
+      onuncheck="spy.SetParam('user.parts.select','false')"
+      target="Auto-Select PARTS"
+      onclick=""
+      value=''
+    >
+    </font>
+  </td>
+
+  <td width='5%%' align='right'>
+  Unique
+  </td>
+
+  <td width='4%%' align='right'>
+    <font size=$GetVar(HtmlFontSizeControls)>
+    <input
+      type='checkbox'
+      bgcolor="GetVar('HtmlTableBgColour')"
+      name='KEEP_UNIQUE@%(scope)s'
+      checked="spy.GetParam('user.parts.keep_unique')"
+      oncheck="spy.SetParam('user.parts.keep_unique','true')>>spy.gui.tools.make_unique()"
+      onuncheck="spy.SetParam('user.parts.keep_unique','false')"
+      target="Keep showing single fragments when switching the PART view"
+      onclick=""
+      value=''
+    >
+    </font>
+  </td>
+
+  <td width='20%%' align='right'>
+  <font size="$GetVar('HtmlFontSizeControls')">
+  <input
+    type='combo'
+    width='100%%'
+    height="$GetVar('HtmlInputHeight')"
+    name='set_label_content_disorder@%(scope)s'
+    value='Labels'
+    items="Occupancy<-o;Chem Occ.<-co;PART No<-p;Link-Code<-v;Labels<-l"
+    bgcolor="$GetVar('HtmlInputBgColour')"
+    onchange="spy.ChooseLabelContent(html.GetValue('~name~'))"
+    readonly="True"
+    custom="GetVar(custom_button);arrow_width: 20"
+  >
+  </font>
+  </td>
+}
+
+t:minimal_gui_link_button{
+  <font size="$GetVar('HtmlFontSizeControls')"><b>
+    <input
+      type="button"
+      name="%(name)s"
+      value="%(value)s"
+      width="#width"
+      height="#height"
+      onclick="#onclick"
+      fgcolor="#fgcolor"
+      bgcolor="#bgcolor"
+      fit="#fit"
+      flat="#flat"
+      hint="#hint"
+      disabled="#disabled"
+    >
+  </font>
+}
+
+t:R_factor_display_report{
+<table>
+<tr>
+<td>
+<font size='%(font_size_R1)s' color='%(font_colour_R1)s'><b>R1 = %(R1)s</font>
+</td>
+</tr>
+<tr>
+<td>
+<font size='%(font_size_wR2)s' color='%(font_colour_wR2)s'><b>wR2 = %(wR2)s&nbsp;</font>
+</td>
+</tr>
+</table>
+}
+
+t:R_factor_display{
+<table width='100%%' border='0' cellspacing='0' cellpadding='0'>
+  <tr>
+    <td align='center'>
+      <font size='%(font_size_wR2)s' color='$GetVar(gui.watermark)'>
+        <b><i>R</i><sub>1&nbsp;</sub></b>
+      </font>
+    </td>
+    
+    <td align='right'>
+      <font size='%(font_size_R1)s' color='%(font_colour_R1)s'>
+        <b>%(R1)s</b>
+      </font>
+        $spy.MakeHoverButton('tiny-%%','spy.make_reflection_graph(fobs_fcalc)')
+    </td>
+  </tr>
+
+  <tr>
+    <td align='center'>
+            <font size='%(font_size_wR2)s' color='$GetVar(gui.watermark)'><b><i>wR</i><sub>2&nbsp;</sub></b>&nbsp;</font>
+    </td>
+
+    <td align='right'>
+      <font size='%(font_size_wR2)s' color='%(font_colour_wR2)s'>
+        <b>%(wR2)s</b>&nbsp;
+      </font>
+      
+      <font size='%(font_size_wR2)s' color='%(grey)s'>
+        <b>%%</b>
+      </font>
+  </td>
+
+  </tr>
+</table>
+}
+
+t:conflicts_top_section{
+<table cellpadding='1' collspacing='1' width='100%%'>
+  <tr>
+    <td>
+    <font size='4' color='%(gui_red)s'><b>There is conflicting information!</b></font></td>
+  </tr>
+  <tr>
+    <td>
+     <font size='2'><b>Some of your files contain conflicting information regarding
+     information that should go into your cif file. Please select the correct values by clicking on
+     the links below.</b></font>
+    </td>
+  </tr>
+<table>
+}
+
+t:conflicts_header_row_start{
+<table>
+  <tr>
+    <td width='25%%'><font color='white'><b></b></font>
+    </td>
+}
+
+
+t:conflicts_header_row_files{
+    <td bgcolor='%(head_colour)s'>
+      <table>
+        <tr>
+          <td width=75%%>
+            <font color='white'><b>%(basename)s</b></font>
+          </td>
+            $+
+    html.Snippet(GetVar(default_link),
+    "value=Use All",
+    "width=55",
+    "name=CONFLICT_%(no_of_file)s",
+    "bgcolor=GetVar(gui.action_colour)",
+    "fgcolor=#ffffff",
+    "onclick=spy.gui.metadata.resolve_all(%(no_of_file)s)",
+    "td1=<td align='right'>",
+    )
+            $-
+        </tr>      
+      </table>
+    </td>
+}
+
+
+t:conflicts_user_value_header{
+<td width='%(col_w)s%%' bgcolor='%(head_colour)s'><font color='white'><b>New User Value</b></font></td>
+}
+
+t:conflicts_conflict{
+    <td width='30%%' bgcolor='%(head_colour)s'><font color='white'><b>%(conflict)s
+    <br><a href='spy.gui.metadata.add_resolved_conflict_item_to_phil("%(conflict)s", ".")'>Unapplicable (.)</a>
+    &nbsp;<a href='spy.gui.metadata.add_resolved_conflict_item_to_phil("%(conflict)s", "?")'> Unknown (?)</a>
+    </b></font></td>
+}
+
+t:conflicts_display_1{
+          <a href='spy.gui.metadata.add_resolved_conflict_item_to_phil("%(conflict)s", "%(val)s")'>
+          <font color='%(colour)s'>%(val)s</font></a>
+}
+
+t:conflicts_conflict_value{
+<td width='%(col_w)s%%' bgcolor='%(bg)s'>%(display)s </td>
+}
+
+t:conflicts_display_2{
+<table width="100%%" cellpadding="0" cellspacing="0">
+  <tr>
+    <td width='80%%'>
+
+  $+
+    html.Snippet(
+    "gui/snippets/input-text",
+    "width='90%%'",
+    "name=%(conflict)s_edit",
+    "value=?",
+    )
+  $-    
+    </td>
+   
+  $+
+    html.Snippet(GetVar(default_link),
+    "value=Use",
+    "width=50",
+    "name=Conflict_%(conflict)s",
+    "bgcolor=GetVar(gui.action_colour)",
+    "fgcolor=#ffffff",
+    "onclick=spy.gui.metadata.add_resolved_conflict_item_to_phil('%(conflict)s', html.GetValue('~popup_name~.%(conflict)s_edit'))",
+    )
+  $-    
+  </tr>
+</table>
+}
+
+t:md_box{
+<body link="#585886" bgcolor='%(bg_colour)s'>
+<font size='%(font_size_base)s' color='#333355' face='Vera'>
+<table bgcolor='%(bg_colour)s' width='100%%' border='0' cellspacing='5' cellpadding='5'>
+  <tr bgcolor='%(bg_colour)s'>
+    <td bgcolor='%(bg_colour)s'>
+      <font color='white' size='6' >
+      <b>
+      %(title)s
+      </b>
+      </font>
+    </td>
+  </tr>
+</table>
+
+<table bgcolor='%(bg_colour)s' width='100%%' border='0' cellspacing='5' cellpadding='5'>
+  <tr bgcolor='%(bg_colour)s'>
+    <td bgcolor='%(bg_colour)s'>
+      <font color='%(font_colour)s'>
+        %(body)s
+      </font>
+    </td>
+  </tr>
+</table>
+
+<hr>
+<table width='100%%' bgcolor='%(bg_colour)s' border='0' cellspacing='5' cellpadding='2'>
+  <tr>
+  <td name='View on GITHUB' width='50%%'>
+  <font color=white><b>
+    $+
+    html.Snippet("gui/snippets/input-button",
+    "name=VIEW_HELP_ON_GITHUB",
+    "bgcolor=spy.GetParam(gui.light_blue)",
+    "height=GetVar('HtmlComboHeight')",
+    "width=100%%",
+    "flat=True",
+    "value=View on GitHub",
+    "onclick=shell https://github.com/Olex2/help/tree/master/gui/EN",
+    )$-
+  </b></font>
+  </td>
+
+  <td name='View on GITHUB' width='50%%'>
+  <font color=white><b>
+    $+
+    html.Snippet("gui/snippets/input-button",
+    "name=CONTRIBUTE_TO_HELP",
+    "bgcolor=spy.GetParam(gui.green)",
+    "height=GetVar('HtmlComboHeight')",
+    "width=100%%",
+    "flat=True",
+    "value=Contribute to the Help System",
+    "onclick=shell mailto:info@olexsys.org",
+    )$-
+  </b></font>
+  </td>
+  </tr>
+</table>
+}
+
+t:edit_help{
+<a href='shell %s'>Edit</a> |
+}
+
+t:compile_help{
+<a href="spy.githelp.git_help(False, '%s')">Recompile</a><p>
+}
+
+t:input_html_tool{
+<html>
+<body>
+<font color="$GetVar(HtmlFontColour)" size="$GetVar(HtmlGuiFontSize)" face="$GetVar(HtmlFontName)">
+&nbsp;
+<!-- #include %(name)s gui/%(tool)s.htm;gui/blocks/tool-off.htm;image=%(tool)s;onclick=%(onclick)s;1; -->
+</font>
+</body>
+</html>
+}
+
+t:pop_mode{
+$run(Focus)
+<html>
+  <body link='$GetVar(HtmlLinkColour)' bgcolor='$GetVar(HtmlHighlightColour)'>
+    <table border="0" style="border-collapse: collapse" width="100%%" id="#tool" cellpadding="1" cellspacing="1" >
+      <tr>
+        <td>
+        </td>
+        <td>
+          <font size='4'>
+            You are in <b><i>mode</i></b>
+          </font>
+          <font size='4'>
+            <b>%(mode_name)s</b>%(mode_qualifiers)s <br>
+          </font>
+          <font size='3'>
+             Press the <b><a href='mode off'>ESC</a></b> key to exit.
+          </font>
+        </td>
+      </tr>
+    </table>
+  </body>
+</html>
+
+<!--
+<zimg border="0" src="pop_background.png">
+-->
+}
+
+t:gui_notification{
+<table border="0" VALIGN='center' width="100%%" cellpadding="1" cellspacing="1" bgcolor="$GetVar(HtmlTableRowBgColour)">
+  <tr>
+    <td bgcolor='%(col_bg)s'>
+      <font color='%(col_fg)s'><b> %(txt)s </b></font>	
+    </td>
+  </tr>
+</table>
+}
+
+t:weight_button{
+<b>
+<input
+  type="button"
+  name="Weight_1"
+  value="%(curr_1)s | %(sugg_1)s"
+  width="45%%"
+  height="math.eval(GetVar('HtmlInputheight')-3)"
+  fgcolor="%(col_1)s"
+  bgcolor="GetVar(HtmlTableFirstcolColour)"
+  onclick="UpdateWght>>html.Update"
+  custom="border.lightness: 80;highlight.lightness: 110"
+>
+&nbsp;
+<input
+  type="button"
+  name="Weight_2"
+  value="%(curr_2)s | %(sugg_2)s"
+  width="45%%"
+  height="math.eval(GetVar('HtmlInputheight')-3)"
+  fgcolor="%(col_2)s"
+  bgcolor="GetVar(HtmlTableFirstcolColour)"
+  onclick="UpdateWght>>html.Update"
+  custom="border.lightness: 80;highlight.lightness: 110"
+>
+</b>}
+
+
+t:restraints_top{
+  <td align='left'>
+    <font size=$GetVar(HtmlFontSizeControls)>
+    <input
+      type='checkbox'
+      bgcolor="GetVar('HtmlTableBgColour')"
+      name='SHOW_RESTRAINTS'
+      checked="GetVar('show_restraints_table','false')"
+      oncheck="SetVar('show_restraints_table','true')>>spy.gui.restraints.make_restraints_table()>>html.update"
+      onuncheck="SetVar('show_restraints_table','false')>>spy.gui.restraints.make_restraints_table()>>html.update"
+      target="Show/Hide the list of restraints in this model"
+      value="Show/Hide the list of restraints"
+    >
+    </font>
+  </td>
+  <td>
+     %(filtered_off)s
+  </td>
+
+  <td width='10%%'>
+  <input
+    type="combo"
+    name="RESTRAINT_FILTER"
+    items="0.0;0.5;1.0;2.0;2.5;3.0;5.0"
+    value="GetVar(restraint_filter)"
+    onchange="SetVar(restraint_filter, html.GetValue(~name~))>>SetVar(restraint_filter_changed, True)>>html.update()>>SetVar(restraint_filter_changed, False)"
+>  </td>
+}
+
+t:exti_gui{
+    <td width='5%' align='right'>
+      <b>EXTI </b>
+    </td>
+
+    <td width='4%'>
+      <input
+        type='checkbox'
+        bgcolor="GetVar('HtmlTableFirstcolColour')"
+        name='SNUM_REFINEMENT_EXTI'
+        checked="not(strcmp(xf.rm.Exti(),'n/a'))"
+        oncheck="spy.SetParam(snum.refinement.refine_extinction,3)>>addins EXTI"
+        onuncheck="spy.SetParam(snum.refinement.refine_extinction,0)>>delins EXTI"
+      >
+    </td>
+
+    <td width='18%'>
+      <b>$spy.gui.tools.refine_extinction()<b>
+    </td>
+}
+
+t:swat_gui{
+    <td width='5%' align='right'>
+      <b>SWAT </b>
+    </td>
+
+    <td width='4%'>
+      <input
+        type='checkbox'
+        bgcolor="GetVar('HtmlTableFirstcolColour')"
+        name='SNUM_REFINEMENT_SWAT'
+        checked="not(strcmp(xf.rm.Swat(),'n/a'))"
+        oncheck="spy.SetParam(snum.refinement.refine_swat,3)>>addins SWAT 1 1"
+        onuncheck="spy.SetParam(snum.refinement.refine_swat,0)>>delins SWAT"
+      >
+    </td>
+
+    <td width='20%'>
+      <b>$spy.gui.tools.refine_swat()<b>
+    </td>
+}
+
+t:exti_or_swat_gui{
+    <td width='6%' align='right'>
+      <b>EXTI </b>
+    </td>
+
+    <td width='5%'>
+      <input
+        type='checkbox'
+        bgcolor="GetVar('HtmlTableFirstcolColour')"
+        name='SNUM_REFINEMENT_EXTI'
+        checked="not(strcmp(xf.rm.Exti(),'n/a'))"
+        oncheck="spy.SetParam(snum.refinement.refine_extinction,3)>>addins EXTI"
+        onuncheck="spy.SetParam(snum.refinement.refine_extinction,0)>>delins EXTI"
+      >
+    </td>
+
+    <td width='6%' align='right'>
+      <b>SWAT </b>
+    </td>
+
+    <td width='5%'>
+      <input
+        type='checkbox'
+        bgcolor="GetVar('HtmlTableFirstcolColour')"
+        name='SNUM_REFINEMENT_SWAT'
+        checked="not(strcmp(xf.rm.Swat(),'n/a'))"
+        oncheck="spy.SetParam(snum.refinement.refine_swat,3)>>addins SWAT 1 1"
+        onuncheck="spy.SetParam(snum.refinement.refine_swat,0)>>delins SWAT"
+      >
+    </td>
+}
+
+t:snum_cell_display{
+  <tr bgcolor=$GetVar(HtmlTableBgColour)>
+    <td width='34%%'>
+       <b>a</b> = %(a)s
+    </td>
+
+    <td width='36%%'>
+       <b>&alpha;</b> = %(alpha)s&deg;
+    </td>
+
+    <td width='30%%'>
+       <b>Z</b> = %(Z)s
+    </td>
+  </tr>
+
+  <tr align='left' bgcolor=$GetVar(HtmlTableBgColour)>
+
+    <td>
+       <b>b</b> = %(b)s
+    </td>
+
+    <td>
+       <b>&beta;</b> = %(beta)s&deg;
+    </td>
+
+    <td>
+       <b>Z'</b> = %(Zprime)s
+    </td>
+  </tr>
+
+  <tr align='left' bgcolor=$GetVar(HtmlTableBgColour)>
+    <td>
+       <b>c</b> = %(c)s
+    </td>
+    <td>
+       <b>&gamma;</b> = %(gamma)s&deg;
+    </td>
+    <td>
+       <b>V</b> = %(volume)s
+    </td>
+  </tr>
+}

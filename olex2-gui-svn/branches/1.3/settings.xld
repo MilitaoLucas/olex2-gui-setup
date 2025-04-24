@@ -1,0 +1,151 @@
+<shortcuts
+  <shortcut key="Ctrl+O" macro="reap">
+  <shortcut key="Ctrl+G" macro="mode grow">
+  <shortcut key="Ctrl+H" macro="showH">
+  <shortcut key="Ctrl+Q" macro="showQ">
+  <shortcut key="Ctrl+R" macro="refine">
+  <shortcut key="Ctrl+T" macro="showStr">
+  <shortcut key="Ctrl+A" macro="sel -a">
+  <shortcut key="Ctrl+U" macro="sel -u">
+  <shortcut key="Ctrl+I" macro="sel -i">
+  <shortcut key="Ctrl+Shift+G" macro="group sel">
+  <shortcut key="Ctrl+Shift+Z" macro="lookAt">
+  <shortcut key="del" macro="kill sel">
+  <shortcut key="Alt+back" macro="selback">
+  <shortcut key="Ctrl+back" macro="kill sel">
+  <shortcut key="F2" macro="swapbg">
+  <shortcut key="F3" macro="labels">
+  <shortcut key="F4" macro="grad -i">
+  <shortcut key="F5" macro="spy.gui.SwitchPanel(work)">
+  <shortcut key="F6" macro="spy.gui.SwitchPanel(view)">
+  <shortcut key="F7" macro="spy.gui.SwitchPanel(tools)">
+  <shortcut key="F8" macro="spy.gui.SwitchPanel(info)">
+  <shortcut key="Shift+F11" macro="HtmlPanelVisible">
+  <shortcut key="F11" macro="Fullscreen(not(Fullscreen()))">
+  <shortcut key="Ctrl+M" macro="spy.gui.maps.MapView()">
+  <shortcut key="Ctrl+S" macro="file">
+  <shortcut key="Ctrl+Shift+S" macro="spy.gui.dialog.SaveModel">
+  <shortcut key="Ctrl+0" macro="showP 0">
+  <shortcut key="Ctrl+1" macro="showP 1">
+  <shortcut key="Ctrl+Shift+1" macro="showP 0 1">
+  <shortcut key="Ctrl+2" macro="showP 2">
+  <shortcut key="Ctrl+Shift+2" macro="showP 0 2">
+  <shortcut key="Ctrl+Shift+y" macro="spy.SetParam(snum.refinement.auto.tidy,True)>>html.Update">
+  <shortcut key="Ctrl+y" macro="spy.SetParam(snum.refinement.auto.tidy,False)>>html.Update">
+  <shortcut key="break" macro="echo ++INTERRUPT++>>spy.stopProcess()">
+  <shortcut key="Ctrl+#" macro="echo ++INTERRUPT++>>spy.stopProcess()">
+  <shortcut key="Ctrl+Shift+u" macro="echo interrupt!>>spy.SetParam(olex2.stop_current_process,True)">
+  <shortcut key="Ctrl+Shift+T" macro="spy.run_autodemo(test)">
+  <shortcut key="Ctrl+Shift+A" macro="spy.gui.About()">
+  <shortcut key="Ctrl+Shift+/" macro="conn $M 0">
+  <shortcut key="Ctrl+/" macro="conn $M 12">
+  >
+<menus
+    <item title="Help;About" macro="spy.gui.About()">
+    <item title="Help;Update options" macro="updateoptions">
+    <item title="Help;Documentation (HTML)" macro="shell BaseDir()/etc/documentation/Commands.html">
+    <item title="Help;Documentation (PDF)" macro="shell BaseDir()/etc/documentation/Commands.pdf">
+
+    <item title="Select;All \tCtrl+A" macro="sel -a" before="Help">
+    <item title="Select;None \tCtrl+U" macro="sel -u">
+    <item title="Select;Invert \tCtrl+I" macro="sel -i">
+    <item title="Select;#" macro="">
+    <item title="Select;Previous Sel" macro="selback">
+
+    <item title="Model;Refine \tCtrl+R" macro="refine" before="Select">
+    <item title="Model;#" macro="">
+    <item title="Model;Move;Cell center" macro="move">
+    <item title="Model;Move;Binding" macro="compaq">
+    <item title="Model;Move;Binding ignore metals" macro="compaq -m">
+    <item title="Model;Move;Closest" macro="compaq -c">
+    <item title="Model;Q-->C" macro="name $Q C>>refine">
+    <item title="Model;Tidy" macro="tidy">
+    <item title="Model;#" macro="">
+    <item title="Model;ANIS All" macro="sel -a>>anis sel>>refine">
+    <item title="Model;ISOT All" macro="sel -a>>isot sel>>refine">
+    <item title="Model;ANIS Selected" macro="anis sel">
+    <item title="Model;ISOT Selected" macro="isot sel">
+    <item title="Model;#" macro="">
+    <item title="Model;Reset" macro="reset">
+    <item title="Model;Solve" macro="solve">
+
+    <item title="Tools;Options" macro="setup" before="Model">
+    <item title="Tools;Settings;Toggle Background \tF2" macro="swapbg">
+    <item title="Tools;Settings;Show Labels \tF3" macro="labels">
+    <check title="Tools;Settings;Gradient \tF4" macro="grad -i" statedependent="gradbg">
+    <item title="Tools;Settings;Swap Control Panel" macro="htmlpanelswap">
+    <check title="Tools;Settings;Show Info Bar" macro="showwindow info" statedependent="infovis">
+    <check title="Tools;Settings;Show Help" macro="showwindow help" statedependent="helpvis">
+    <check title="Tools;Settings;Show Tooltips" macro="html.tooltips" statedependent="htmlttvis">
+    <item title="Tools;Settings;Show Alerts" macro="spy.SwitchAllAlertsOn()">
+    <check title="Tools;Settings;External CMD line" macro="showwindow cmdline" statedependent="cmdlinevis">
+    <item title="Tools;More Settings..." macro="setup">
+    <radio title="Tools;Settings;GUI Font Size;Small" macro="htmguifontsize 2" checkdependent="GetVar(gui_html_font_size)">
+    <radio title="Tools;Settings;GUI Font Size;Medium" macro="htmguifontsize 3">
+    <radio title="Tools;Settings;GUI Font Size;Large" macro="htmguifontsize 4">
+    <radio title="Tools;Settings;Lines of Text;All" macro="lines -1">
+    <radio title="Tools;Settings;Lines of Text;0" macro="lines 0">
+    <radio title="Tools;Settings;Lines of Text;1" macro="lines 1">
+    <radio title="Tools;Settings;Lines of Text;2" macro="lines 2">
+    <radio title="Tools;Settings;Lines of Text;5" macro="lines 5">
+    <radio title="Tools;Settings;Lines of Text;10" macro="lines 10">
+    <radio title="Tools;Settings;Lines of Text;20" macro="lines 20">
+
+    <check title="Mode;HFIX;13 (1 Hydrogen sp3)" macro="mode hfix 13" modedependent="HFIX;13"
+      before="Tools">
+    <check title="Mode;HFIX;23 (2 Hydrogen sp3)" macro="mode hfix 23" modedependent="HFIX;23">
+    <check title="Mode;HFIX;137 (3 Hydrogen sp3)" macro="mode hfix 137" modedependent="HFIX;137">
+    <check title="Mode;HFIX;#" macro="">
+    <check title="Mode;HFIX;43 (1 Hydrogen sp2)" macro="mode hfix 43" modedependent="HFIX;43">
+    <check title="Mode;HFIX;93 (2 Hydrogen sp2)" macro="mode hfix 93" modedependent="HFIX;93">
+    <check title="Mode;HFIX;#" macro="">
+    <check title="Mode;HFIX;83 (1 Hydrogen OH)" macro="mode hfix 83" modedependent="HFIX;83">
+    <check title="Mode;HFIX;134 (1 Hydrogen OH H-bonded)" macro="mode hfix 134" modedependent="HFIX;134">
+    <check title="Mode;PART;1" macro="mode part 1" modedependent="PART;1">
+    <check title="Mode;PART;2" macro="mode part 2" modedependent="PART;2">
+    <check title="Mode;PART;#" macro="">
+    <check title="Mode;PART;3" macro="mode part 3"  modedependent="PART;3">
+    <check title="Mode;PART;4" macro="mode part 4" modedependent="PART;4">
+    <check title="Mode;FVAR;21" macro="mode fvar 21"  modedependent="FVAR;21">
+    <check title="Mode;FVAR;-21" macro="mode fvar -21" modedependent="FVAR;-21">
+    <check title="Mode;FVAR;#" macro="">
+    <check title="Mode;FVAR;31" macro="mode fvar 31"  modedependent="FVAR;31">
+    <check title="Mode;FVAR;-31" macro="mode fvar -31" modedependent="FVAR;-31">
+    <check title="Mode;Symmetry;Grow" macro="mode grow" modedependent="Symmetry">
+    <check title="Mode;Symmetry;Move Near" macro="mode move sel" modedependent="Symmetry">
+    <check title="Mode;Symmetry;Copy Near" macro="mode move -c sel" modedependent="Symmetry">
+
+    <check title="Mode;TYPE;C" macro="mode name -t=C"  modedependent="TYPE;C">
+    <check title="Mode;TYPE;N" macro="mode name -t=N"  modedependent="TYPE;N">
+    <check title="Mode;TYPE;O" macro="mode name -t=O"  modedependent="TYPE;O">
+    <check title="Mode;TYPE;F" macro="mode name -t=F"  modedependent="TYPE;F">
+    <check title="Mode;Naming;Number Sequentially from 1" macro="mode name">
+    <item  title="Mode;#" macro="">
+    <item title="Mode;Clear" macro="mode -1">
+
+    <item title="View;Quick Drawing Styles;Default" macro="default" before="Mode">
+    <item title="View;Quick Drawing Styles;Balls & Sticks" macro="pers>>sel -u">
+    <item title="View;Quick Drawing Styles;Ellipsoids" macro="telp>>sel -u">
+    <item title="View;Quick Drawing Styles;Ellipsoids (with Hydrogens)" macro="telph>>sel -u">
+    <item title="View;Quick Drawing Styles;Wire Frame" macro="proj">
+    <item title="View;Quick Drawing Styles;Sphere Packing" macro="sfil>>sel -u">
+    <item title="View;Quick Drawing Styles;Tubes" macro="tubes>>sel -u">
+    <check title="View;Structure;Cell" macro="cell" statedependent="cellvis">
+    <check title="View;Structure;Basis" macro="basis" statedependent="basisvis">
+    <check title="View;Structure;Hide/Show Structure" macro="showStr" statedependent="strvis">
+
+    <item title="Edit;Edit Atoms" macro="editatom" before="View">
+    <item title="Edit;Edit Instructions" macro="editins">
+    <item title="Edit;Delete Selection <DEL>" macro="kill sel">
+    <item title="Edit;Undo" macro="undo">
+
+    <item title="File;Open" macro="reap" before="#">
+    <check title="File;#" macro="">
+    <item title="File;Save (Ctrl+S)" macro="file">
+    <item title="File;Save With Sorting" macro="file -s">
+    <item title="File;Save model as .. (Ctrl+Shift+S)" macro="spy.gui.dialog.SaveModel">
+    <item title="File;Close" macro="Close">
+    <item title="File;Exit" macro="quit">
+>
+<#include "custom_settings.xld" extend='true'>
+<#include "app.ConfigDir()/custom_settings.xld" extend='true'>

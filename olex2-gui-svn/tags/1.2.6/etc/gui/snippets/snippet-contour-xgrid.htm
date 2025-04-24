@@ -1,0 +1,39 @@
+<!-- #include tool-column gui\blocks\tool-first-column.htm;1; -->
+<!-- #include row_table_on gui\blocks\row_table_on.htm;1; -->
+  <td width="15%">%Contours%</td>
+  <td colspan='1' width="75%">
+    <font size='$GetVar(HtmlFontSizeControls)'>
+    <input
+      align="right"
+      type="slider"
+      name="SNUM_XGRID_CONTOUR_SLIDE"
+      width="100%"
+      height="18"
+      value="$xgrid.Contours()"
+      bgcolor="$GetVar(HtmlTableBgColour)"
+      fgcolor="$GetVar(HtmlFontColour)"
+      min="3"
+      max="30"
+      onchange="
+xgrid.Contours(html.GetValue(~name~))>>
+html.SetValue(SNUM_XGRID_CONTOUR_VALUE,xGrid.Contours())"
+    >
+    </font>
+  </td>
+  <td cwidth="10%">
+    <font size='$GetVar(HtmlFontSizeControls)'>
+    <input
+      type="text"
+      name = "SNUM_XGRID_CONTOUR_VALUE"
+      width="100%"
+      height="18"
+      bgcolor="$GetVar(HtmlTableBgColour)"
+      fgcolor="$GetVar(HtmlFontColour)"
+      value="$xgrid.Contours()"
+      onchange="
+xgrid.Contours(html.GetValue(~name~))
+html.SetValue(SNUM_XGRID_CONTOUR_SLIDE,xGrid.Contours())"
+    >
+    </font>
+  </td>
+<!-- #include row_table_off gui\blocks\row_table_off.htm;1; -->

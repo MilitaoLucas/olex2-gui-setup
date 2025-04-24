@@ -1,0 +1,7 @@
+<!-- #include tool-top gui\blocks\tool-top.htm;image=#image;onclick=#onclick;1; -->
+
+<!-- #include images-header gui\tools\images-header.htm;name='IMAGES_HEADER';1 -->
+
+<!-- #include images-body gui\tools\images-body.htm;name='IMAGES_HEADER';1 -->
+
+<!-- #include tool-footer gui\blocks\tool-footer.htm;colspan=2;1; -->

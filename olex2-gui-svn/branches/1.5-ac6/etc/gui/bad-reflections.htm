@@ -1,0 +1,124 @@
+<!-- #include tool-top gui\blocks\tool-top.htm;image=#image;onclick=#onclick;1; -->
+
+<!-- #include tool-row-help gui\blocks\tool-row-help.htm;name='OMIT_REFLECTIONS';help_ext=omit-reflections;1 -->
+
+
+  $+
+    html.Snippet(GetVar(default_link),
+    "value=OMIT",
+    "onclick=omit html.GetValue(omit_filter)",
+    )
+  $-
+
+  <td width="45%">
+    all reflections where |Error/esd| > than
+  </td>
+
+  $+
+    html.Snippet("gui/snippets/input-text-td",
+    "name=omit_filter",
+    "value=10"
+    )
+  $-
+
+  $+
+    html.Snippet(GetVar(default_link),
+    "value=ClearOMITs",
+    "onclick=DelIns OMIT",
+    )
+  $-
+
+<!-- #include row_table_off gui\blocks\row_table_off.htm;1; -->
+
+<!-- #include tool-row-help gui\blocks\tool-row-help.htm;name='BAD_REFLECTIONS_SORTING';help_ext=Bad-Reflections-Sorting;1 -->
+  <td width="90%">Unsigned sorting by Error/esd (refine to update)</td>
+  <td align="right">$+
+    html.Snippet("gui/snippets/input-checkbox", "name=ref_sorting",
+     "checked=GetVar('olex2.disagreeable.sort_abs','true')",
+     "onclick=SetVar('olex2.disagreeable.sort_abs',html.GetState(~name~))")
+   $-</td>
+<!-- #include row_table_off gui\blocks\row_table_off.htm;1; -->
+
+<!-- #include tool-row-help gui\blocks\tool-row-help.htm;name='BAD_REFLECTIONS';help_ext=Bad-Reflections;1 -->
+<td>
+  <table align='center' border="0" style="border-collapse: collapse" width="100%" cellpadding="0" cellspacing="1" bgcolor="$GetVar(HtmlTableBgColour)">
+    <tr>
+      <td  width='15%'></td>
+      <td  width='15%'></td>
+      <td  width='15%'></td>
+      <td  width='35%'></td>
+      <td  width='30%'></td>
+    </tr>
+<!-- #include bad-reflections badrefs.htm;1; -->
+  </table>
+</td>
+<!-- #include row_table_off gui\blocks\row_table_off.htm;1; -->
+
+<!-- #include tool-row-help gui\blocks\tool-row-help.htm;name='EXCLUDE_HKL';help_ext=Exclude-hkl;1 -->
+
+  <td>
+    <a href="HklExclude -c=html.GetState(exclude_and) -h=html.GetValue(exclude_h) -k=html.GetValue(exclude_k) -l=html.GetValue(exclude_l)" >%Exclude%:</a>
+  </td>
+
+
+  <td>
+    <input
+      type="text"
+      height="GetVar('HtmlInputHeight')"
+      name = "exclude_h"
+      width="22"
+      bgcolor="GetVar('HtmlInputBgColour')"
+      value=""
+      manage
+      label="h = "
+    >
+  </td>
+  <td>
+    <input
+      type="text"
+      height="GetVar('HtmlInputHeight')"
+      name = "exclude_k"
+      width="22"
+      bgcolor="GetVar('HtmlInputBgColour')"
+      value=""
+      manage
+      label="k = "
+    >
+  </td>
+  <td>
+    <input
+      type="text"
+      height="GetVar('HtmlInputHeight')"
+      name = "exclude_l"
+      width="22"
+      bgcolor="GetVar('HtmlInputBgColour')"
+      manage="true"
+      label="l = "
+    >
+  </td>
+  <td>
+    <input
+      type='checkbox'
+      bgcolor="GetVar('HtmlTableBgColour')"
+      fgcolor="GetVar('HtmlFontColour')"
+      name="exclude_and"
+      value="%AND%"
+      manage="true"
+    >
+  </td>
+
+  <td>
+    <a href="html.SetValue('exclude_h','')>>html.SetValue('exclude_k','')>>html.SetValue('exclude_l','')>>HklAppend">%Reset%</a>
+  </td>
+<!-- #include row_table_off gui\blocks\row_table_off.htm;1; -->
+
+
+<!-- #include tool-row-help gui\blocks\tool-row-help.htm;name='EDIT_REFLECTIONS';help_ext=edit-reflections;1 -->
+  <td align='left'>
+    <a href="HklEdit">%Edit Reflections%</a>
+  </td>
+<!-- #include row_table_off gui\blocks\row_table_off.htm;1; -->
+
+<!-- #include tool-footer gui\blocks\tool-footer.htm;colspan=2;1; -->
+
+<!-- %Bad Reflections% -->

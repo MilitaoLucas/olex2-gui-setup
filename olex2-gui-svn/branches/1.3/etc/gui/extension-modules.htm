@@ -1,0 +1,95 @@
+<!-- #ignoreif not(spy.GetParam('olex2.network'))
+$spy.plugins.getAvailableModules()
+
+<!-- #include tool-top gui\blocks\tool-top.htm;image=#image;onclick=#onclick;1; -->
+
+<!-- #include tool-row gui\blocks\tool-row-help.htm;name=MODULES_1;help_ext=Extension_Modules;1; -->
+  <td width='100%'>
+Various extension modules for Olex2 are currently under development. If you are interested in
+testing these, please sign up below! Please <b>do not use temporary emails</b> - we may need to
+contact you in the case of new releases or features update.
+  </td>
+<!-- #include row_table_off gui\blocks\row_table_off.htm;1; -->
+
+<!-- #include tool-row-help gui\blocks\tool-row.htm;name='MODULES_EMAIL';1 -->
+  <td width='13%'><b>e-mail</b></td>
+  <td width="40%" align="right">$+
+     html.Snippet("gui/snippets/input-text", "name=modules_email",
+      "width=100%",
+      "value=spy.GetParam('user.email')",
+      "onchange=spy.SetParam('user.email',html.GetValue('~name~'))",
+      "onleave=html.call('~name~.onchange')")
+   $-</td>
+  <td width='15%'><b>Reference</b></td>
+  <td width="35%" align="right">$+
+     html.Snippet("gui/snippets/input-text", "name=modules_reference",
+      "width=100%",
+      "value=spy.GetParam('user.modules.reference')",
+      "onchange=spy.SetParam('user.modules.reference',html.GetValue('~name~'))",
+      "onleave=html.call('~name~.onchange')")
+   $-</td>
+<!-- #include row_table_off gui\blocks\row_table_off.htm;1; -->
+
+<!-- #include tool-row gui\blocks\tool-row.htm;name=MODULES_ACTION;1; -->
+  <td width='13%'><b>Modules</b></td>
+  <td width="40%" align="right">
+    $+
+     html.Snippet("gui/snippets/input-combo", "name=available_modules",
+      "width=100%",
+      "items=spy.plugins.gui.getModuleList()",
+      "value=spy.plugins.gui.getCurrentModuleName()",
+      "onchange=spy.plugins.gui.update(html.GetValue(~name~))",
+      "onreturn=html.call(~name~.onchange)",
+      "readonly=false")
+    $-
+  </td>
+  
+  
+    $+
+    html.Snippet(GetVar(default_link),
+    "value=spy.plugins.gui.getAction()",
+    "onclick=spy.plugins.gui.doAct()",
+    "td1=<td width='29%'>"
+    )$-
+<!-- #include row_table_off gui\blocks\row_table_off.htm;1; -->
+
+<!-- #include tool-row gui\blocks\tool-row.htm;name=MODULES_INFO;1; -->
+<td bgcolor="#FFD699">$spy.plugins.gui.getInfo()</td>
+<!-- #include row_table_off gui\blocks\row_table_off.htm;1; -->
+
+<!-- #ignoreif not(fs.Exists('modules-info.htm'))
+<!-- #include tool-row gui\blocks\tool-row.htm;name=MODULES_INFO;1; -->
+<!-- #includeif fs.Exists('modules-info.htm') modules-info modules-info.htm;1 -->
+<!-- #include row_table_off gui\blocks\row_table_off.htm;1; -->
+#ignoreif -->
+
+<!-- #include tool-row gui\blocks\tool-row.htm;name=MODULES_OFFLINE;1; -->
+  <td width='65%'>
+  Install offline module in ZIP format.
+  </td>
+    $+
+    html.Snippet(GetVar(default_link),
+    "value=Install Offline",
+    "onclick=spy.plugins.offlineInstall()",
+    "td1=<td width='29%'>"
+    )$-
+<!-- #include row_table_off gui\blocks\row_table_off.htm;1; -->
+
+<!-- #include tool-footer gui\blocks\tool-footer.htm;colspan=2;1; -->
+#ignoreif -->
+
+<!-- #ignoreif spy.GetParam('olex2.network')
+<!-- #include tool-top gui\blocks\tool-top.htm;image=#image;onclick=#onclick;1; -->
+
+<!-- #include tool-row gui\blocks\tool-row-help.htm;name=MODULES_1;help_ext=Extension-Modules;1; -->
+  <td width='75%'>Network commincation is disabled</td><td>
+$+
+  html.Snippet("gui/snippets/input-button", "name=MODULES_ENABLE_NET",
+      "value=Enable", "fit=true", "flat=false",
+      "onclick=spy.SetParam('olex2.network', 'True')>>html.Update")
+$-
+  </td>
+<!-- #include row_table_off gui\blocks\row_table_off.htm;1; -->
+
+<!-- #include tool-footer gui\blocks\tool-footer.htm;colspan=2;1; -->
+#ignoreif -->

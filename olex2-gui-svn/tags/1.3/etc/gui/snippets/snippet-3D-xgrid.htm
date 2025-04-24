@@ -1,0 +1,20 @@
+<!-- #include tool-row-help gui\blocks\tool-row-help.htm;name='MAP_3D';help_ext=map-3D;1 -->
+
+  <td width="15%">%Level%&nbsp;/e&Aring;<sup>-3</sup></td>
+
+  $+
+    html.Snippet("gui/snippets/input-slider",
+    "param=snum.xgrid.scale",
+    "name=SNUM_XGRID_SCALE",
+    "min=\$GetVar(map_min)",
+    "max=\$GetVar(map_max)",
+    "scale=\$GetVar(map_slider_scale)",
+    "cmd=xgrid.scale(math.eval(html.GetValue(SNUM_XGRID_SCALE_VALUE)*-1))",
+    "td1=<td width='43%'>",
+    "invert=-1",
+    "swidth=90"
+    )
+  $-
+
+<!-- #include row_table_off gui\blocks\row_table_off.htm;1; -->
+

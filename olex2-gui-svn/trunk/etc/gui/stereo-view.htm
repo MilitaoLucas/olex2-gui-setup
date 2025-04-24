@@ -1,0 +1,35 @@
+<!-- #include tool-top gui\blocks\tool-top.htm;image=#image;onclick=#onclick;1; -->
+
+<!-- FIRST ROW -->
+<!-- #include tool-row-help gui\blocks\tool-row-help.htm;name='STEREO_VIEW_1';help_ext=Stereo-View;1; -->
+
+  <td width='50%' name=STEREO_HARDWARE>
+$spy.MakeHoverButton('two-Stereo_(Colour)','gl.stereo(color)')
+  </td>
+
+  <td width='50%' name=STEREO_HARDWARE>
+$spy.MakeHoverButton('two-Stereo_(Anaglyph)','gl.stereo(anaglyph)')
+  </td>
+
+<!-- #include row_table_off gui\blocks\row_table_off.htm;1; -->
+
+
+<!-- SECOND ROW -->
+<!-- #include tool-row gui\blocks\tool-row.htm;name='STEREO_VIEW_2';1 -->
+  <td width='50%' name=STEREO_HARDWARE>
+$spy.MakeHoverButton('two-Stereo_(Hardware)','gl.stereo(false)>>gl.stereo(hardware)')
+  </td>
+  <td width='50%'>
+$spy.MakeHoverButton('two-Stereo_(Interlaced)','gl.stereo(false)>>gl.stereo(interlace)')
+  </td>
+<!-- #include row_table_off gui\blocks\row_table_off.htm;1; -->
+
+<!-- THIRD ROW -->
+<!-- #include tool-row gui\blocks\tool-row.htm;name='STEREO_VIEW_3';1 -->
+  <td width='50%' name=STEREO_NORMAL colspan=2>
+$spy.MakeHoverButton('two-Normal_View','gl.stereo(false)')
+  </td>
+<!-- #include row_table_off gui\blocks\row_table_off.htm;1; -->
+<!-- #include tool-footer gui\blocks\tool-footer.htm;colspan=2;1; -->
+
+<!-- %stereo-target% -->

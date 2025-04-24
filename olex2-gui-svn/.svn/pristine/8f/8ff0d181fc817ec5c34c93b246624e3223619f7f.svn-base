@@ -1,0 +1,93 @@
+#Ga Ka, source: Platon
+Element  1, H , WaveLength: 1.34140, f':  0.0000, f":  0.0000
+Element  2, He, WaveLength: 1.34140, f':  0.0000, f":  0.0000
+Element  3, Li, WaveLength: 1.34140, f':  0.0011, f":  0.0002
+Element  4, Be, WaveLength: 1.34140, f':  0.0024, f":  0.0010
+Element  5, B , WaveLength: 1.34140, f':  0.0070, f":  0.0029
+Element  6, C , WaveLength: 1.34140, f':  0.0137, f":  0.0067
+Element  7, N , WaveLength: 1.34140, f':  0.0241, f":  0.0134
+Element  8, O , WaveLength: 1.34140, f':  0.0389, f":  0.0241
+Element  9, F , WaveLength: 1.34140, f':  0.0583, f":  0.0400
+Element 10, Ne, WaveLength: 1.34140, f':  0.0817, f":  0.0628
+Element 11, Na, WaveLength: 1.34140, f':  0.1104, f":  0.0938
+Element 12, Mg, WaveLength: 1.34140, f':  0.1421, f":  0.1346
+Element 13, Al, WaveLength: 1.34140, f':  0.1771, f":  0.1873
+Element 14, Si, WaveLength: 1.34140, f':  0.2153, f":  0.2529
+Element 15, P , WaveLength: 1.34140, f':  0.2543, f":  0.3332
+Element 16, S , WaveLength: 1.34140, f':  0.2925, f":  0.4295
+Element 17, Cl, WaveLength: 1.34140, f':  0.3281, f":  0.5435
+Element 18, Ar, WaveLength: 1.34140, f':  0.3587, f":  0.6774
+Element 19, K , WaveLength: 1.34140, f':  0.3778, f":  0.8310
+Element 20, Ca, WaveLength: 1.34140, f':  0.3829, f":  1.0059
+Element 21, Sc, WaveLength: 1.34140, f':  0.3700, f":  1.2039
+Element 22, Ti, WaveLength: 1.34140, f':  0.3343, f":  1.4243
+Element 23, V , WaveLength: 1.34140, f':  0.2663, f":  1.6689
+Element 24, Cr, WaveLength: 1.34140, f':  0.1560, f":  1.9394
+Element 25, Mn, WaveLength: 1.34140, f': -0.0162, f":  2.2332
+Element 26, Fe, WaveLength: 1.34140, f': -0.2673, f":  2.5550
+Element 27, Co, WaveLength: 1.34140, f': -0.6628, f":  2.9049
+Element 28, Ni, WaveLength: 1.34140, f': -1.3357, f":  3.2904
+Element 29, Cu, WaveLength: 1.34140, f': -2.7974, f":  3.6876
+Element 30, Zn, WaveLength: 1.34140, f': -2.7473, f":  0.5279
+Element 31, Ga, WaveLength: 1.34140, f': -1.9031, f":  0.6051
+Element 32, Ge, WaveLength: 1.34140, f': -1.5187, f":  0.6907
+Element 33, As, WaveLength: 1.34140, f': -1.2701, f":  0.7845
+Element 34, Se, WaveLength: 1.34140, f': -1.0833, f":  0.8881
+Element 35, Br, WaveLength: 1.34140, f': -0.9338, f":  1.0006
+Element 36, Kr, WaveLength: 1.34140, f': -0.8018, f":  1.1247
+Element 37, Rb, WaveLength: 1.34140, f': -0.6884, f":  1.2581
+Element 38, Sr, WaveLength: 1.34140, f': -0.5625, f":  1.4257
+Element 39, Y , WaveLength: 1.34140, f': -0.4654, f":  1.5873
+Element 40, Zr, WaveLength: 1.34140, f': -0.3750, f":  1.7612
+Element 41, Nb, WaveLength: 1.34140, f': -0.2894, f":  1.9494
+Element 42, Mo, WaveLength: 1.34140, f': -0.2130, f":  2.1496
+Element 43, Tc, WaveLength: 1.34140, f': -0.1426, f":  2.3642
+Element 44, Ru, WaveLength: 1.34140, f': -0.0760, f":  2.5955
+Element 45, Rh, WaveLength: 1.34140, f': -0.0161, f":  2.8414
+Element 46, Pd, WaveLength: 1.34140, f':  0.0375, f":  3.1039
+Element 47, Ag, WaveLength: 1.34140, f':  0.0782, f":  3.3823
+Element 48, Cd, WaveLength: 1.34140, f':  0.1061, f":  3.6794
+Element 49, In, WaveLength: 1.34140, f':  0.1167, f":  3.9932
+Element 50, Sn, WaveLength: 1.34140, f':  0.1164, f":  4.3256
+Element 51, Sb, WaveLength: 1.34140, f':  0.1003, f":  4.6759
+Element 52, Te, WaveLength: 1.34140, f':  0.0584, f":  5.0452
+Element 53, I , WaveLength: 1.34140, f':  0.0030, f":  5.4350
+Element 54, Xe, WaveLength: 1.34140, f': -0.0772, f":  5.8499
+Element 55, Cs, WaveLength: 1.34140, f': -0.1739, f":  6.3004
+Element 56, Ba, WaveLength: 1.34140, f': -0.3132, f":  6.7527
+Element 57, La, WaveLength: 1.34140, f': -0.4908, f":  7.2214
+Element 58, Ce, WaveLength: 1.34140, f': -0.6939, f":  7.7244
+Element 59, Pr, WaveLength: 1.34140, f': -0.9513, f":  8.2366
+Element 60, Nd, WaveLength: 1.34140, f': -1.2627, f":  8.7680
+Element 61, Pm, WaveLength: 1.34140, f': -1.6454, f":  9.3260
+Element 62, Sm, WaveLength: 1.34140, f': -2.1214, f":  9.9048
+Element 63, Eu, WaveLength: 1.34140, f': -2.6997, f": 10.5010
+Element 64, Gd, WaveLength: 1.34140, f': -3.4578, f": 11.1283
+Element 65, Tb, WaveLength: 1.34140, f': -4.4782, f": 11.8047
+Element 66, Dy, WaveLength: 1.34140, f': -5.9987, f": 12.4498
+Element 67, Ho, WaveLength: 1.34140, f': -7.4624, f": 11.3895
+Element 68, Er, WaveLength: 1.34140, f':-10.7818, f":  8.7525
+Element 69, Tm, WaveLength: 1.34140, f': -8.6980, f":  9.2627
+Element 70, Yb, WaveLength: 1.34140, f': -9.3530, f":  9.8114
+Element 71, Lu, WaveLength: 1.34140, f':-21.3766, f":  3.7544
+Element 72, Hf, WaveLength: 1.34140, f': -9.4190, f":  3.9832
+Element 73, Ta, WaveLength: 1.34140, f': -7.9760, f":  4.2206
+Element 74, W , WaveLength: 1.34140, f': -7.1285, f":  4.4676
+Element 75, Re, WaveLength: 1.34140, f': -6.5366, f":  4.7224
+Element 76, Os, WaveLength: 1.34140, f': -6.0803, f":  4.9890
+Element 77, Ir, WaveLength: 1.34140, f': -5.7005, f":  5.2682
+Element 78, Pt, WaveLength: 1.34140, f': -5.3886, f":  5.5592
+Element 79, Au, WaveLength: 1.34140, f': -5.1040, f":  5.8603
+Element 80, Hg, WaveLength: 1.34140, f': -4.8790, f":  6.1759
+Element 81, Tl, WaveLength: 1.34140, f': -4.6638, f":  6.5029
+Element 82, Pb, WaveLength: 1.34140, f': -4.4950, f":  6.8412
+Element 83, Bi, WaveLength: 1.34140, f': -4.3533, f":  7.1873
+Element 84, Po, WaveLength: 1.34140, f': -4.2319, f":  7.5551
+Element 85, At, WaveLength: 1.34140, f': -4.1476, f":  7.9301
+Element 86, Rn, WaveLength: 1.34140, f': -4.0632, f":  8.3167
+Element 87, Fr, WaveLength: 1.34140, f': -4.0051, f":  8.7136
+Element 88, Ra, WaveLength: 1.34140, f': -3.9666, f":  9.1179
+Element 89, Ac, WaveLength: 1.34140, f': -3.9501, f":  9.5298
+Element 90, Th, WaveLength: 1.34140, f': -3.9342, f":  9.9644
+Element 91, Pa, WaveLength: 1.34140, f': -3.9435, f": 10.4050
+Element 92, U , WaveLength: 1.34140, f': -3.9641, f": 10.8496

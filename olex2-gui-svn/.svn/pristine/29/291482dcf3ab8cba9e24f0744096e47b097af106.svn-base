@@ -1,0 +1,51 @@
+
+<td width='40%' name=Q_PAEAK_SLIDER_LABEL colspan = '1' bgcolor="$spy.GetParam(gui.html.table_firstcol_colour)">
+  <b>
+    %Uiso Select Atoms%
+  </b>
+</td>
+
+<td name=UISO_SELECT_SLIDER_BUTTONS align=right colspan='2' bgcolor="$spy.GetParam(gui.html.table_firstcol_colour)">
+$spy.MakeHoverButton(button_small-delete,kill sel)
+</td>
+
+</tr>
+<tr name=SLIDE_UISO_SELECT_SLIDER>
+
+<td name=UISO_SELECT_SLIDER_SLIDER colspan='2'>
+
+
+  <input
+    type="slider"
+    name = "UISO_SELECT_SLIDER"
+    width="$eval($spy.getParam(gui.htmlpanelwidth)-100)"
+    height="18"
+    value="0"
+    bgcolor="$spy.GetParam(gui.html.table_bg_colour)"
+    fgcolor="$spy.GetParam(gui.html.font_colour)"
+    min="-20"
+    max="20"
+    onchange="
+Freeze(True)
+>>sel -u
+>>SetVar(UisoSelectVal,spy.UisoSelectSlide(GetValue(UISO_SELECT_SLIDER)))
+>>SetLabel(UisoSelectVal,GetVar(UisoSelectVal))
+>>sel atoms where xatom.uiso GetVar(UisoSelectVal)&&xatom.type!='Q''
+>>Freeze(False)
+  ">
+</td>
+
+<td align='right' name=UISO_PEAK_SLIDER_VALUE>
+  <input
+    type="label"
+    name = "UisoSelectVal"
+    width="40"
+    height="18"
+    bgcolor="$spy.GetParam(gui.html.table_bg_colour)"
+    fgcolor="$spy.GetParam(gui.html.font_colour)"
+    value="spy.UisoSelectSlide(GetValue(UISO_SELECT_SLIDER))"
+  >
+</td>
+
+
+

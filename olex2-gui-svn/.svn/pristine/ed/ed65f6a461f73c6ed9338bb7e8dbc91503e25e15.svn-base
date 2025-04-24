@@ -1,0 +1,13 @@
+_diffrn_detector                      'CCD area detector'
+_diffrn_detector_area_resol_mean      7.9
+_diffrn_detector_type                 'Bruker SMART CCD 1K area detector'
+
+_diffrn_measurement_device            'three-circle diffractometer'
+_diffrn_measurement_device_type       'Bruker SMART CCD 1K area detector'
+_diffrn_measurement_method            '\w scans'
+
+_diffrn_radiation_monochromator       graphite
+_diffrn_radiation_probe               x-ray
+
+_diffrn_source                        'sealed X-ray tube'
+_diffrn_source_target                 Mo

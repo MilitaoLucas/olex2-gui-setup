@@ -1,0 +1,47 @@
+<!-- FIRST ROW -->
+<tr name=HEADLINE_PACK_RADIUS_1>
+  <td name=HEADLINE_PACK_RADIUS colspan='2' bgcolor="$GetVar(HtmlTableFirstcolColour)">
+    <b>
+      %Pack Radius%
+    </b>
+  </td>
+</tr>
+
+<!-- SECOND ROW -->
+<tr name=PACK_RADIUS_2>
+  <td name=SLIDER_PACK_RADIUS width="85%">
+    <font size='$GetVar(HtmlFontSizeControls)'>
+    <input 
+      type="slider" 
+      name = "SlidePackRadius" 
+      width="100%" 
+      height="$GetVar(HtmlInputHeight)" 
+      value="0" 
+      bgcolor="$GetVar(HtmlTableBgColour)"  
+      fgcolor="$GetVar(HtmlFontColour)" 
+      min="2" 
+      max="20" 
+      onchange = "
+html.SetValue(PackRadius,html.GetValue(~name~))>>
+pack html.GetValue(PackRadius)>>
+"
+  >
+  </font>
+  </td>
+  <td name=PACK_RADIUS_VALUE width="15%">
+    <font size='$GetVar(HtmlFontSizeControls)'>
+    <input 
+      type="text" 
+      name = "PackRadius" 
+      width="100%" 
+      height="$GetVar(HtmlInputHeight)" 
+      bgcolor="$GetVar(HtmlTableBgColour)"  
+      fgcolor="$GetVar(HtmlFontColour)" 
+      value="html.GetValue(SlidePackRadius)" 
+      onreturn="html.SetValue(SlidePackRadius,html.GetValue(~name~))>>
+fuse>>
+pack html.GetValue(~name~)"
+    >
+    </font>
+  </td>
+</tr>

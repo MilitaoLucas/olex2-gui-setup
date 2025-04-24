@@ -1,0 +1,20 @@
+<!-- #include tool-top gui\blocks\tool-top.htm;image=#image;onclick=#onclick;1; -->
+
+<!-- FIRST ROW -->
+<tr>
+  <td>
+  <font size='$GetVar(HtmlFontSizeControls)'>
+  <input type='button' value='Pick a folder'
+    onclick="spy.gui.tools.folder_view.list()"
+  >
+  </font>
+  </td>
+</tr>
+<tr>
+  <td>
+  $spy.gui.tools.folder_view.generateHtml()
+  </td>
+</tr>
+
+
+<!-- #include tool-footer gui\blocks\tool-footer.htm;colspan=2;1; -->

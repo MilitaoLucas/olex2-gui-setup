@@ -1,0 +1,30 @@
+#value=
+#width=100%
+#readonly=true
+#manage=false
+#onchangealways=false
+#setdefault=false
+#disabled=false
+
+<font size="$GetVar('HtmlFontSizeControls')">
+<input
+  type="combo"
+  height="GetVar('HtmlComboHeight')"
+  bgcolor="GetVar('HtmlInputBgColour')"
+  fgcolor="GetVar(HtmlFontColour)"
+  valign="center"
+  name="#name"
+  width="#width"
+  value="#value"
+  setdefault="#setdefault"
+  items="#items"
+  disabled="#disabled"
+  onchange="#onchange"
+  onleave="#onleave"
+  readonly="#readonly"
+  onchangealways="#onchangealways"
+  manage="#manage"
+  onreturn="#onreturn"
+  onenter="#onenter"
+>
+</font>

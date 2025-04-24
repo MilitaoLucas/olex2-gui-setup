@@ -1,0 +1,48 @@
+<td width='10%'>
+View 
+</td>
+
+<td width='30%'>
+  <font size='$GetVar(HtmlFontSizeControls)'>
+  <input
+    type="combo"
+    height="$GetVar(HtmlComboHeight)"
+    bgcolor="$GetVar(HtmlInputBgColour)"
+    name="SET_SNUM_XGRID_VIEW_#suffix"
+    items='plane;contour;contour+plane;surface;wire;points'
+    value="$spy.GetParam(snum.xgrid.view)"
+    onchange="spy.SetParam(snum.xgrid.view,html.GetValue(~name~))
+>>spy.gui.maps.SetXgridView()
+>>html.Update"
+    valign="center"
+    readonly
+  >
+  </font>
+</td>
+
+<td width='12%'>
+Extended 
+</td>
+
+<td width='8%'>
+  <font size='$GetVar(HtmlFontSizeControls)'>
+  <input
+    type="checkbox"
+    name="SET_SNUM_XGRID_EXTENDED_#suffix"
+    fgcolor="GetVar('HtmlFontColour')"
+    bgcolor="GetVar('HtmlTableBgColour')"
+    checked="$spy.GetParam(snum.xgrid.extended)"
+    oncheck="spy.SetParam(snum.xgrid.extended,True)
+>>spy.gui.maps.SetXgridView()
+>>html.Update"
+  onuncheck="spy.SetParam(snum.xgrid.extended,False)
+>>spy.gui.maps.SetXgridView()
+>>html.Update"
+  valign="center"
+  >
+  </font>
+</td>
+<td align='right'>
+  <a href="editmaterial XGrid">%Edit% %style%</a>
+  <!--<a href="sel WBox">%Select% %Volume%</a>-->
+</td>

@@ -1,0 +1,38 @@
+    <table width="100%" cellpadding="0" cellspacing="0" border="0">
+      <tr>
+        <td align='left' name=BZOOM_SLIDER width="85%">
+          <font size='$GetVar(HtmlFontSizeControls)'>
+          <input
+            type="slider"
+            align='right'
+            name = "SLIDE_BZOOM"
+            width="100%"
+            height="18"
+            value="math.eval(spy.GetParam(user.bonds.bzoom,1)/10)"
+            bgcolor="$GetVar(HtmlTableBgColour)"
+            fgcolor="$GetVar(HtmlFontColour)"
+            min="1"
+            max="20"
+            onchange="
+        >>spy.SetParam(user.bonds.bzoom,math.eval(html.GetValue(~name~)*10))
+        >>html.SetValue(BZOOMValue,math.eval(html.GetValue(~name~)*10))
+        >>brad math.eval(html.GetValue(~name~)/10)"
+          >
+          </font>
+        </td>
+        <td name=BZOOM_VALUE align='right' width="15%">
+          <font size='$GetVar(HtmlFontSizeControls)'>
+          <input
+            type="text"
+            name = "BZOOMValue"
+            width="100%"
+            bgcolor="$GetVar(HtmlTableBgColour)"
+            fgcolor="$GetVar(HtmlFontColour)"
+            value="spy.GetParam(user.bonds.thickness,100)"
+            onchange="spy.set_bond_thicknes(~name~,100))"
+            label=""
+          >
+          </font>
+        </td>
+      </tr>
+    </table>
