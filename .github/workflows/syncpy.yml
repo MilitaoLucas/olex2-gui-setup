@@ -50,7 +50,9 @@ jobs:
         run: |
           # Execute your Python script, passing the workspace path as the root path
           python svn-sync.py ${{ github.workspace }}
-
+        env:
+          SVN_REVISION: ${{ env.SVN_REVISION }} 
+          
       - name: Commit Updated SVN Checkout Directory
         run: |
           echo "Checking for changes in SVN checkout directory (olex2-gui-svn)..."
