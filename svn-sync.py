@@ -138,11 +138,9 @@ def main(root_path: str) -> None:
     # --- Update Revision File ---
     # ... (writes the new revision number to REVISION_FILE) ...
     print(f"Updating revision file: {REVISION} to {NEW_REVISION}")
-    with open("revision", "w") as f:
+    with open(os.path.join(ROOT_PATH, "revision"), "w") as f:
         f.write(f"{NEW_REVISION}")
 
-    # --- Commit the revision file update ---
-    # This commit should happen in the *main* repo (ROOT_PATH), not the GIT_PATH clone
     print(f"Committing revision file update in {ROOT_PATH}")
     os.chdir(ROOT_PATH)  # Change to the repo containing the revision file (Repo-A)
     run(["git", "add", "revision"], check=True)
