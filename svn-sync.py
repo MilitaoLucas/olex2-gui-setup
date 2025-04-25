@@ -4,7 +4,7 @@ from subprocess import run
 import os
 import datetime
 import argparse
-
+from dotenv import load_dotenv, set_key
 
 def get_commit(revision: int, new_revision: int) -> list:
     command = [
@@ -90,10 +90,16 @@ def main(root_path: str) -> None:
     GIT_PATH = os.path.join(ROOT_PATH, "olex2-gui-git")
     NEW_REVISION = None
     REVISION = None
+    dotenv = False
+    if REVISION := os.environ.get("SVN_REVISION") is not None:
+        print(f"Current revision: {REVISION}")
+        REVISION = int(REVISION)
+    else:
+        print("LOADED FROM DOTENV, NOT GITHUB")
+        load_dotenv()
+        dotenv = True
+        REVISION = int(os.environ.get("SVN_REVISION"))
 
-    os.chdir(ROOT_PATH)
-    with open("revision", "r") as f:
-        REVISION = int(f.read())
     os.chdir(SVN_PATH)
     # Get new patches
     NEW_REVISION = int(
@@ -104,8 +110,7 @@ def main(root_path: str) -> None:
     )
     if NEW_REVISION == REVISION:
         return
-    with open(os.path.join(ROOT_PATH, "revision"), "w") as f:
-        f.write(f"{NEW_REVISION}")
+
     print(f"Found newer revision than current ({REVISION}): ", int(NEW_REVISION))
     run("svn update".split())
     out = run(
@@ -135,28 +140,11 @@ def main(root_path: str) -> None:
 
     print(f"ENDED RUNNING AT {datetime.datetime.now()}")
     print("=" * 100)
-    # --- Update Revision File ---
-    # ... (writes the new revision number to REVISION_FILE) ...
-    print(f"Updating revision file: {REVISION} to {NEW_REVISION}")
-    with open(os.path.join(ROOT_PATH, "revision"), "w") as f:
-        f.write(f"{NEW_REVISION}")
-
-    print(f"Committing revision file update in {ROOT_PATH}")
-    os.chdir(ROOT_PATH)  # Change to the repo containing the revision file (Repo-A)
-    run(["git", "add", "revision"], check=True)
-    commit_msg = f"Update SVN sync revision to {NEW_REVISION}"
-    # Check if there are staged changes before committing
-    status_result = run(
-        ["git", "status", "--porcelain"], capture_output=True, text=True
-    )
-    if "revision" in status_result.stdout:
-        run(["git", "commit", "-m", commit_msg], check=True)
-        print("Pushing revision file update...")
-        # This push uses the default GITHUB_TOKEN permissions for Repo-A
-        run(["git", "push"], check=True)
+    if dotenv:
+        set_key(f"{ROOT_PATH}/.env", "SVN_REVISION", str(NEW_REVISION))
     else:
-        print("No changes to revision file to commit.")
-
+        os.environ["SVN_REVISION"] = str(NEW_REVISION)
+        print(f"::set-output name=SVN_REVISION::{NEW_REVISION}")
 
 if __name__ == "__main__":
     # Set up argument parser
