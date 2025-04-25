@@ -135,6 +135,29 @@ def main(root_path: str) -> None:
 
     print(f"ENDED RUNNING AT {datetime.datetime.now()}")
     print("=" * 100)
+    # --- Update Revision File ---
+    # ... (writes the new revision number to REVISION_FILE) ...
+    print(f"Updating revision file: {REVISION} to {NEW_REVISION}")
+    with open(REVISION, "w") as f:
+        f.write(f"{NEW_REVISION}\n")
+
+    # --- Commit the revision file update ---
+    # This commit should happen in the *main* repo (ROOT_PATH), not the GIT_PATH clone
+    print(f"Committing revision file update in {ROOT_PATH}")
+    os.chdir(ROOT_PATH)  # Change to the repo containing the revision file (Repo-A)
+    run(["git", "add", os.path.basename(REVISION)], check=True)
+    commit_msg = f"Update SVN sync revision to {NEW_REVISION}"
+    # Check if there are staged changes before committing
+    status_result = run(
+        ["git", "status", "--porcelain"], capture_output=True, text=True
+    )
+    if os.path.basename(REVISION) in status_result.stdout:
+        run(["git", "commit", "-m", commit_msg], check=True)
+        print("Pushing revision file update...")
+        # This push uses the default GITHUB_TOKEN permissions for Repo-A
+        run(["git", "push"], check=True)
+    else:
+        print("No changes to revision file to commit.")
 
 
 if __name__ == "__main__":
