@@ -1,0 +1,3 @@
+[submodule "olex2-gui-git"]
+	path = olex2-gui-git
+	url = git@github.com:MilitaoLucas/olex2-gui.git
