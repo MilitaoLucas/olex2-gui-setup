@@ -73,12 +73,11 @@ def main(root_path: str) -> None:
     print("=" * (len(rev_str) + 5))
     print(rev_str)
     global NEW_REVISION, REVISION, GIT_PATH, SVN_PATH, ROOT_PATH
-    ROOT_PATH = os.path.abspath(".")
+    ROOT_PATH = root_path
     SVN_PATH = os.path.join(ROOT_PATH, "olex2-gui-svn")
     GIT_PATH = os.path.join(ROOT_PATH, "olex2-gui-git")
     NEW_REVISION = None
     REVISION = None
-    print(os.listdir())
     parse_git_svn_args()
     if NEW_REVISION == REVISION:
         print(f"No newer revision found, still at {REVISION}")
