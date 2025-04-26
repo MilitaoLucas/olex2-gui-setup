@@ -4,7 +4,6 @@ from subprocess import run
 import os
 import datetime
 import argparse
-from dotenv import load_dotenv, set_key
 
 
 def merge_svn_git():
