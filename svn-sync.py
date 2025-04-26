@@ -78,6 +78,7 @@ def main(root_path: str) -> None:
     GIT_PATH = os.path.join(ROOT_PATH, "olex2-gui-git")
     NEW_REVISION = None
     REVISION = None
+    print(os.listdir())
     parse_git_svn_args()
     if NEW_REVISION == REVISION:
         print(f"No newer revision found, still at {REVISION}")
