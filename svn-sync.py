@@ -56,10 +56,6 @@ def parse_git_svn_args():
             print(i)
             REVISION = int(re.findall(r"\d+", i)[0])
 
-    with open(f"{ROOT_PATH}/errors", "a+") as f:
-        print(err_msg := f"Failed to parse args, error: {e}")
-        f.write(err_msg)
-
 
 def main(root_path: str) -> None:
     rev_str = f"STARTED RUNNING AT {datetime.datetime.now()}"
@@ -72,6 +68,9 @@ def main(root_path: str) -> None:
     NEW_REVISION = None
     REVISION = None
     parse_git_svn_args()
+    print(ROOT_PATH)
+    print(f"Current PATH: {os.path.abspath('.')}")
+    print(GIT_PATH)
     if NEW_REVISION == REVISION:
         print(f"No newer revision found, still at {REVISION}")
         print(f"ENDED RUNNING AT {datetime.datetime.now()}")
