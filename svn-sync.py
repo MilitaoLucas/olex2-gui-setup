@@ -69,6 +69,7 @@ def main(root_path: str) -> None:
     REVISION = None
     print(ROOT_PATH)
     print(f"Current PATH: {os.path.abspath('.')}")
+    print(f"listdir: {os.listdir()}")
     print(GIT_PATH)
     parse_git_svn_args()
     if NEW_REVISION == REVISION:
