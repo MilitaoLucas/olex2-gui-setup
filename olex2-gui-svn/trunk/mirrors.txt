@@ -1,2 +1,0 @@
-http://www2.olex2.org/olex2-distro/
-https://secure.olex2.org/olex2-distro/

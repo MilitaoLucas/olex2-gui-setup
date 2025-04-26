@@ -6,145 +6,89 @@ import datetime
 import argparse
 from dotenv import load_dotenv, set_key
 
-def get_commit(revision: int, new_revision: int) -> list:
-    command = [
-        "git",
-        "commit",
-        "-m",
-        f"Automatic update from revision {revision} to {new_revision}",
-    ]
-    return command
+
+def merge_svn_git():
+    try:
+        os.chdir(GIT_PATH)
+        out = run(["git", "branch", "-a"], capture_output=True, encoding="utf-8")
+        out.check_returncode()
+        all_branches = out.stdout
+        all_branches = [i.strip().lower() for i in all_branches.split("\n") if i != ""]
+        svn_branches = []
+        local_branches = []
+        run(["git", "switch", "-f", "main"]).check_returncode()
+        run(["git", "merge", "remotes/git-svn/trunk"]).check_returncode()
+        for i in all_branches:
+            if "main" in i or "origin" in i or "trunk" in i or "tags" in i:
+                continue
+            if "git-svn" in i:
+                svn_branches.append(i)
+            else:
+                local_branches.append(i)
+
+        for i in svn_branches:
+            lb = i.split("/")[-1]
+            if lb not in local_branches:
+                run(f"git checkout -b {lb} {i}".split()).check_returncode()
+            else:
+                run(["git", "switch", "-f", lb]).check_returncode()
+                run(["git", "merge", i]).check_returncode()
+
+        out.check_returncode()
+        out = run(["git", "branch", "-a"], capture_output=True, encoding="utf-8")
+        out.check_returncode()
+        out.check_returncode()
+        os.chdir(ROOT_PATH)
+    except Exception as e:
+        with open(f"{ROOT_PATH}/errors", "a+") as f:
+            print(err_msg := f"Failed to parse args, error: {e}")
+            f.write(err_msg)
 
 
-def rsync_to_git_branch(btname: str = "trunk", tag: bool = False):
-    trunk = False
-    if btname == "trunk":
-        trunk = True
-    branch = not (trunk or tag)
+def parse_git_svn_args():
+    global GIT_PATH, NEW_REVISION, REVISION
     os.chdir(GIT_PATH)
-    push = False
-    if trunk:
-        try:
-            out = run("git switch -f main".split(), capture_output=True)
-            out.check_returncode()
-            out = run(f"rsync -rvP {SVN_PATH}/trunk/ .".split(), capture_output=True)
-            if out.returncode != 0:
-                print(out.stdout)
-                print(out.stderr)
-            run("rm -rf .idea".split())
-            run("git add .".split())
-            run(get_commit(REVISION, NEW_REVISION))
-            push = True
-        except Exception as e:
-            with open(f"{ROOT_PATH}/errors", "a+") as f:
-                f.write(f"Error in trunk Syncing: {e}")
+    try:
+        run(["git", "svn", "fetch"], capture_output=True)
+        out = run(["git", "svn", "info"], capture_output=True, encoding="utf-8")
+        out.check_returncode()
+        out = out.stdout
+        out = [i.strip().lower() for i in out.split("\n")]
+        for i in out:
+            # print(i)
+            if "revision" in i:
+                NEW_REVISION = int(re.findall(r"\d+", i)[0])
+            if all([k in i for k in ["last", "changed", "rev"]]):
+                REVISION = int(re.findall(r"\d+", i)[0])
 
-    if branch:
-        try:
-            out = run(f"git switch -f {btname}".split(), capture_output=True)
-            out.check_returncode()
-            run("rm -rf .idea".split())
-            out = run(
-                f"rsync -rvP {SVN_PATH}/branches/{btname}/ .".split(),
-                capture_output=True,
-            )
-            if out.returncode != 0:
-                print(out.stdout)
-                print(out.stderr)
-            run("git add .".split())
-            run(get_commit(REVISION, NEW_REVISION))
-            push = True
-        except Exception as e:
-            with open(f"{ROOT_PATH}/errors", "a+") as f:
-                f.write(f"Error in branch Syncing, branch {btname} afected: {e}")
-
-    if tag:
-        try:
-            out = run(f"git checkout -b tag_{btname}".split(), capture_output=True)
-            out.check_returncode()
-            out = run(
-                f"rsync -rvP {SVN_PATH}/tags/{btname}/ .".split(), capture_output=True
-            )
-            if out.returncode != 0:
-                print(out.stdout)
-                print(out.stderr)
-            run(f"rm -rf .idea".split())
-            run("git add .".split())
-            run(get_commit(REVISION, NEW_REVISION))
-            run(f"git switch -f main".split())
-            run(f"git tag {btname} tag_{btname}".split())
-            run(f"git branch -D tag_{btname}")
-            push = True
-        except Exception as e:
-            with open(f"{ROOT_PATH}/errors", "a+") as f:
-                f.write(f"Error in tag Syncing, tag {btname} afected: {e}")
-    if push:
-        run(f"git push --all origin".split())
+    except Exception as e:
+        with open(f"{ROOT_PATH}/errors", "a+") as f:
+            print(err_msg := f"Failed to parse args, error: {e}")
+            f.write(err_msg)
 
 
 def main(root_path: str) -> None:
-    print(f"STARTED RUNNING AT {datetime.datetime.now()}")
+    rev_str = f"STARTED RUNNING AT {datetime.datetime.now()}"
+    print("=" * (len(rev_str) + 5))
+    print(rev_str)
     global NEW_REVISION, REVISION, GIT_PATH, SVN_PATH, ROOT_PATH
     ROOT_PATH = root_path
     SVN_PATH = os.path.join(ROOT_PATH, "olex2-gui-svn")
     GIT_PATH = os.path.join(ROOT_PATH, "olex2-gui-git")
     NEW_REVISION = None
     REVISION = None
-    dotenv = False
-    if REVISION := os.environ.get("SVN_REVISION") is not None:
-        print(f"Current revision: {REVISION}")
-        REVISION = int(REVISION)
-    else:
-        print("LOADED FROM DOTENV, NOT GITHUB")
-        load_dotenv()
-        dotenv = True
-        REVISION = int(os.environ.get("SVN_REVISION"))
-
-    os.chdir(SVN_PATH)
-    # Get new patches
-    NEW_REVISION = int(
-        run(
-            "svn info -r HEAD --show-item last-changed-revision".split(),
-            capture_output=True,
-        ).stdout
-    )
+    parse_git_svn_args()
     if NEW_REVISION == REVISION:
+        print(f"No newer revision found, still at {REVISION}")
+        print(f"ENDED RUNNING AT {datetime.datetime.now()}")
+        print("=" * (len(rev_str) + 5))
         return
-
-    print(f"Found newer revision than current ({REVISION}): ", int(NEW_REVISION))
-    run("svn update".split())
-    out = run(
-        f"svn diff --summarize -r {REVISION}:{NEW_REVISION}".split(),
-        capture_output=True,
-    ).stdout
-    out = str(out)
-    # Extract unique items from each category
-    branch_pattern = r"branches/([\d.]+)"
-    tag_pattern = r"tags/([\d.]+)"
-    trunk_pattern = r"trunk/"
-
-    branches = set(re.findall(branch_pattern, out))
-    tags = set(re.findall(tag_pattern, out))
-    has_trunk_changes = bool(re.search(trunk_pattern, out))
-
-    # Start Syncing
-    for branch in sorted(branches):
-        print(f"Syncing to branch: {branch}")
-        rsync_to_git_branch(branch)
-    for tag in sorted(tags):
-        rsync_to_git_branch(tag, tag=True)
-        print(f"Syncing to tag: {tag}")
-    if has_trunk_changes:
-        print("Syncing to trunk")
-        rsync_to_git_branch()
-
-    print(f"ENDED RUNNING AT {datetime.datetime.now()}")
-    print("=" * 100)
-    if dotenv:
-        set_key(f"{ROOT_PATH}/.env", "SVN_REVISION", str(NEW_REVISION))
     else:
-        os.environ["SVN_REVISION"] = str(NEW_REVISION)
-        print(f"::set-output name=SVN_REVISION::{NEW_REVISION}")
+        print(f"Found newer revision than current ({REVISION}): {NEW_REVISION}")
+        merge_svn_git()
+        print(f"ENDED RUNNING AT {datetime.datetime.now()}")
+        print("=" * (len(rev_str) + 5))
+
 
 if __name__ == "__main__":
     # Set up argument parser
