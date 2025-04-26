@@ -56,8 +56,10 @@ def parse_git_svn_args():
         for i in out:
             # print(i)
             if "revision" in i:
+                print(i)
                 NEW_REVISION = int(re.findall(r"\d+", i)[0])
             if all([k in i for k in ["last", "changed", "rev"]]):
+                print(i)
                 REVISION = int(re.findall(r"\d+", i)[0])
 
     except Exception as e:
@@ -71,7 +73,7 @@ def main(root_path: str) -> None:
     print("=" * (len(rev_str) + 5))
     print(rev_str)
     global NEW_REVISION, REVISION, GIT_PATH, SVN_PATH, ROOT_PATH
-    ROOT_PATH = root_path
+    ROOT_PATH = os.path.abspath(".")
     SVN_PATH = os.path.join(ROOT_PATH, "olex2-gui-svn")
     GIT_PATH = os.path.join(ROOT_PATH, "olex2-gui-git")
     NEW_REVISION = None
