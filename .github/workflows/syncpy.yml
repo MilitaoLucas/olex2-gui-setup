@@ -18,10 +18,6 @@ jobs:
           sudo apt-get update -y
           sudo apt-get install -y subversion rsync
           
-      - name: Install dotenv
-        run: |
-          python3 -m pip install python-dotenv
-          
       - name: Check out repository
         uses: actions/checkout@v4
         with:
@@ -54,36 +50,7 @@ jobs:
         run: |
           # Execute your Python script, passing the workspace path as the root path
           python svn-sync.py ${{ github.workspace }}
-        env:
-          SVN_REVISION: ${{ env.SVN_REVISION }} 
-          
-      - name: Commit Updated SVN Checkout Directory
-        run: |
-          echo "Checking for changes in SVN checkout directory (olex2-gui-svn)..."
-          cd ${{ github.workspace }}
 
-          # Check if there are any changes (staged or unstaged) in the specific directory
-          # Use --exit-code to get 0 if no changes, 1 if changes
-          git diff --quiet --exit-code olex2-gui-svn || git diff --staged --quiet --exit-code olex2-gui-svn
-          CHANGES_EXIST=$? # 0 = no changes, 1 = changes found
-
-          if [ $CHANGES_EXIST -ne 0 ]; then
-            echo "Changes detected in olex2-gui-svn. Committing..."
-            # Add all changes within the SVN checkout directory
-            git add olex2-gui-svn
-
-            # Commit the changes
-            # Extract the latest revision number for the commit message (optional)
-            LATEST_REVISION=$(cat revision) # Assumes revision file is updated
-            git commit -m "Update SVN checkout to r${LATEST_REVISION}"
-
-            echo "Pushing updated SVN checkout to this repo..."
-            git push origin HEAD # Push the current branch
-          else
-            echo "No changes detected in olex2-gui-svn directory to commit."
-          fi
-
-      # You might want to add error reporting here if the script step fails
       - name: Report Failure
         if: steps.sync_script.outcome == 'failure'
         run: echo "SVN Sync script failed. Check logs."
