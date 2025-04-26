@@ -7,65 +7,58 @@ import argparse
 
 
 def merge_svn_git():
-    try:
-        os.chdir(GIT_PATH)
-        out = run(["git", "branch", "-a"], capture_output=True, encoding="utf-8")
-        out.check_returncode()
-        all_branches = out.stdout
-        all_branches = [i.strip().lower() for i in all_branches.split("\n") if i != ""]
-        svn_branches = []
-        local_branches = []
-        run(["git", "switch", "-f", "main"]).check_returncode()
-        run(["git", "merge", "remotes/git-svn/trunk"]).check_returncode()
-        for i in all_branches:
-            if "main" in i or "origin" in i or "trunk" in i or "tags" in i:
-                continue
-            if "git-svn" in i:
-                svn_branches.append(i)
-            else:
-                local_branches.append(i)
+    os.chdir(GIT_PATH)
+    out = run(["git", "branch", "-a"], capture_output=True, encoding="utf-8")
+    out.check_returncode()
+    all_branches = out.stdout
+    all_branches = [i.strip().lower() for i in all_branches.split("\n") if i != ""]
+    svn_branches = []
+    local_branches = []
+    run(["git", "switch", "-f", "main"]).check_returncode()
+    run(["git", "merge", "remotes/git-svn/trunk"]).check_returncode()
+    for i in all_branches:
+        if "main" in i or "origin" in i or "trunk" in i or "tags" in i:
+            continue
+        if "git-svn" in i:
+            svn_branches.append(i)
+        else:
+            local_branches.append(i)
 
-        for i in svn_branches:
-            lb = i.split("/")[-1]
-            if lb not in local_branches:
-                run(f"git checkout -b {lb} {i}".split()).check_returncode()
-            else:
-                run(["git", "switch", "-f", lb]).check_returncode()
-                run(["git", "merge", i]).check_returncode()
+    for i in svn_branches:
+        lb = i.split("/")[-1]
+        if lb not in local_branches:
+            run(f"git checkout -b {lb} {i}".split()).check_returncode()
+        else:
+            run(["git", "switch", "-f", lb]).check_returncode()
+            run(["git", "merge", i]).check_returncode()
 
-        out.check_returncode()
-        out = run(["git", "branch", "-a"], capture_output=True, encoding="utf-8")
-        out.check_returncode()
-        out.check_returncode()
-        os.chdir(ROOT_PATH)
-    except Exception as e:
-        with open(f"{ROOT_PATH}/errors", "a+") as f:
-            print(err_msg := f"Failed to parse args, error: {e}")
-            f.write(err_msg)
+    out.check_returncode()
+    out = run(["git", "branch", "-a"], capture_output=True, encoding="utf-8")
+    out.check_returncode()
+    out.check_returncode()
+    os.chdir(ROOT_PATH)
 
 
 def parse_git_svn_args():
     global GIT_PATH, NEW_REVISION, REVISION
     os.chdir(GIT_PATH)
-    try:
-        run(["git", "svn", "fetch"], capture_output=True)
-        out = run(["git", "svn", "info"], capture_output=True, encoding="utf-8")
-        out.check_returncode()
-        out = out.stdout
-        out = [i.strip().lower() for i in out.split("\n")]
-        for i in out:
-            # print(i)
-            if "revision" in i:
-                print(i)
-                NEW_REVISION = int(re.findall(r"\d+", i)[0])
-            if all([k in i for k in ["last", "changed", "rev"]]):
-                print(i)
-                REVISION = int(re.findall(r"\d+", i)[0])
+    run(["git", "svn", "fetch"], capture_output=True)
+    out = run(["git", "svn", "info"], capture_output=True, encoding="utf-8")
+    out.check_returncode()
+    out = out.stdout
+    out = [i.strip().lower() for i in out.split("\n")]
+    for i in out:
+        # print(i)
+        if "revision" in i:
+            print(i)
+            NEW_REVISION = int(re.findall(r"\d+", i)[0])
+        if all([k in i for k in ["last", "changed", "rev"]]):
+            print(i)
+            REVISION = int(re.findall(r"\d+", i)[0])
 
-    except Exception as e:
-        with open(f"{ROOT_PATH}/errors", "a+") as f:
-            print(err_msg := f"Failed to parse args, error: {e}")
-            f.write(err_msg)
+    with open(f"{ROOT_PATH}/errors", "a+") as f:
+        print(err_msg := f"Failed to parse args, error: {e}")
+        f.write(err_msg)
 
 
 def main(root_path: str) -> None:
