@@ -44,7 +44,7 @@ jobs:
           git submodule update --init --recursive
       
       - name: Cache .git directory
-        uses: actions/cache@v4
+        uses: actions/cache@v4.2.3
         id: cache-git
         path: olex2-gui-git/.git
         key: git-svn-${{ github.sha }} # Use a unique key for initial setup
