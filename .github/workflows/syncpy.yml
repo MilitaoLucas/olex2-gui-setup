@@ -31,8 +31,10 @@ jobs:
       - name: Initialize Git SVN (if not already initialized)
         run: |
           if [ ! -d ".git/svn" ]; then
-            git svn init --prefix=svn/ --no-metadata --trunk=trunk http://svn.olex2.org/olex2-gui .
+            git svn init --prefix=svn/ --no-metadata --trunk=trunk http://svn.olex2.org/olex2-gui olex2-gui-git
+            cd olex2-gui-git 
             git branch -a
+            cd ..
           fi
 
       - name: Configure Git User
