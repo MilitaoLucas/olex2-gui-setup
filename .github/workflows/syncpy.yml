@@ -10,7 +10,7 @@ on:
 
 jobs:
   sync:
-    runs-on: ubuntu-latest # Use a Linux runner
+    runs-on: ubuntu-22.04 # Use a Linux runner
 
     steps:
       - name: Install SVN and rsync
