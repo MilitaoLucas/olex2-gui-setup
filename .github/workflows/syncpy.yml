@@ -27,6 +27,13 @@ jobs:
           # Use a Personal Access Token (PAT) if you need to trigger other workflows
           # Or if the default GITHUB_TOKEN doesn't have enough permissions (e.g., cross-repo)
           # token: ${{ secrets.YOUR_PAT }} # Usually not needed for same-repo pushes
+
+      - name: Initialize Git SVN (if not already initialized)
+        run: |
+          if [ ! -d ".git/svn" ]; then
+            git svn init --prefix=svn/ --no-metadata --trunk=trunk <YOUR_SVN_REPOSITORY_URL> .
+          fi
+
       - name: Configure Git User
         run: |
           git config --global user.name 'github-actions[bot]'
