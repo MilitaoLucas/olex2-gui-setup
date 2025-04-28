@@ -32,6 +32,7 @@ jobs:
         run: |
           if [ ! -d ".git/svn" ]; then
             git svn init --prefix=svn/ --no-metadata --trunk=trunk http://svn.olex2.org/olex2-gui .
+            git branch -a
           fi
 
       - name: Configure Git User
