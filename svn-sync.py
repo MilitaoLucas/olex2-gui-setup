@@ -43,14 +43,7 @@ def merge_svn_git():
 def parse_git_svn_args():
     global GIT_PATH, NEW_REVISION, REVISION
     os.chdir(GIT_PATH)
-    try:
-        run(["git", "svn", "fetch"], capture_output=True).check_returncode()
-    except CalledProcessError as e:
-        run(['git',  'config', '--global', 'user.name', "'github-actions[bot]'"])
-        run(['git',  'config', '--global', 'user.email', "'github-actions[bot]@users.noreply.github.com'"])
-        run(['git','svn', 'init', '--prefix=svn/', '--trunk=trunk', '.'])
-        run(["git", "svn", "fetch"])
-
+    run(["git", "svn", "fetch"], capture_output=True).check_returncode()
     out = run(["git", "svn", "info"], capture_output=True, encoding="utf-8")
     print(f"STDOUT: {out.stdout}, STDERR: {out.stderr}")
     out.check_returncode()
