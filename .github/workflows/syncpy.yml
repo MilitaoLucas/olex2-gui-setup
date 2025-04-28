@@ -45,9 +45,10 @@ jobs:
       
       - name: Cache .git directory
         uses: actions/cache@v4.2.3
-        id: cache-git
-        path: olex2-gui-git/.git
-        key: git-svn-${{ github.sha }} # Use a unique key for initial setup
+        with:
+          id: cache-git
+          path: olex2-gui-git/.git
+          key: git-svn-${{ github.sha }} # Use a unique key for initial setup
 
       - name: Initialize Git SVN (if not already initialized)
         if: steps.cache-git.outputs.cache-hit != 'true'
