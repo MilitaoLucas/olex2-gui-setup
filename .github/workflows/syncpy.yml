@@ -16,7 +16,8 @@ jobs:
       - name: Install SVN and rsync
         run: |
           sudo apt-get update -y
-          sudo apt-get install -y rsync git git-svn
+          sudo apt-get remove -y git
+          sudo apt-get install -y rsync git-svn
           
       - name: Check out repository
         uses: actions/checkout@v4
