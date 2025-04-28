@@ -48,9 +48,11 @@ def parse_git_svn_args():
     except CalledProcessError as e:
         run(['git',  'config', '--global', 'user.name', "'github-actions[bot]'"])
         run(['git',  'config', '--global', 'user.email', "'github-actions[bot]@users.noreply.github.com'"])
+        run(['git','svn', 'init', '--prefix=svn/', '--trunk=trunk', '.'])
         run(["git", "svn", "fetch"])
 
     out = run(["git", "svn", "info"], capture_output=True, encoding="utf-8")
+    print(f"STDOUT: {out.stdout}, STDERR: {out.stderr}")
     out.check_returncode()
     out = out.stdout
     out = [i.strip().lower() for i in out.split("\n")]
