@@ -52,6 +52,7 @@ def parse_git_svn_args():
         run(["git", "svn", "fetch"])
 
     out = run(["git", "svn", "info"], capture_output=True, encoding="utf-8")
+    print(f"STDOUT: {out.stdout}, STDERR: {out.stderr}")
     out.check_returncode()
     out = out.stdout
     out = [i.strip().lower() for i in out.split("\n")]
