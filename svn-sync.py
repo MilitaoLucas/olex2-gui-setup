@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 import re
-from subprocess import run
+from subprocess import run, CalledProcessError
 import os
 import datetime
 import argparse
@@ -8,6 +8,7 @@ import argparse
 
 def merge_svn_git():
     os.chdir(GIT_PATH)
+    run(["git", "pull"], capture_output=True, encoding="utf-8").check_returncode()
     out = run(["git", "branch", "-a"], capture_output=True, encoding="utf-8")
     out.check_returncode()
     all_branches = out.stdout
@@ -42,7 +43,13 @@ def merge_svn_git():
 def parse_git_svn_args():
     global GIT_PATH, NEW_REVISION, REVISION
     os.chdir(GIT_PATH)
-    run(["git", "svn", "fetch"], capture_output=True)
+    try:
+        run(["git", "svn", "fetch"], capture_output=True).check_returncode()
+    except CalledProcessError as e:
+        run(['git',  'config', '--global', 'user.name', "'github-actions[bot]'"])
+        run(['git',  'config', '--global', 'user.email', "'github-actions[bot]@users.noreply.github.com'"])
+        run(["git", "svn", "fetch"])
+
     out = run(["git", "svn", "info"], capture_output=True, encoding="utf-8")
     out.check_returncode()
     out = out.stdout
