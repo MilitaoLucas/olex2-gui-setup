@@ -4,86 +4,57 @@ from subprocess import run, CalledProcessError
 import os
 import datetime
 import argparse
+from dotenv import load_dotenv, set_key
+
+load_dotenv()
+
+REVISION = int(os.getenv("REVISION"))
+REVISION_15 = int(os.getenv("REVISION_15"))
 
 
-def merge_svn_git():
-    os.chdir(GIT_PATH)
-    run(["git", "pull"], capture_output=True, encoding="utf-8").check_returncode()
-    out = run(["git", "branch", "-a"], capture_output=True, encoding="utf-8")
-    out.check_returncode()
-    all_branches = out.stdout
-    all_branches = [i.strip().lower() for i in all_branches.split("\n") if i != ""]
-    svn_branches = []
-    local_branches = []
-    run(["git", "switch", "-f", "main"]).check_returncode()
-    run(["git", "merge", "remotes/git-svn/trunk"]).check_returncode()
-    for i in all_branches:
-        if "main" in i or "origin" in i or "trunk" in i or "tags" in i:
-            continue
-        if "git-svn" in i:
-            svn_branches.append(i)
-        else:
-            local_branches.append(i)
-
-    for i in svn_branches:
-        lb = i.split("/")[-1]
-        if lb not in local_branches:
-            run(f"git checkout -b {lb} {i}".split()).check_returncode()
-        else:
-            run(["git", "switch", "-f", lb]).check_returncode()
-            run(["git", "merge", i]).check_returncode()
-
-    out.check_returncode()
-    out = run(["git", "branch", "-a"], capture_output=True, encoding="utf-8")
-    out.check_returncode()
-    out.check_returncode()
-    os.chdir(ROOT_PATH)
-
-
-def parse_git_svn_args():
-    global GIT_PATH, NEW_REVISION, REVISION
-    os.chdir(GIT_PATH)
-    run(["git", "svn", "fetch"], capture_output=True).check_returncode()
+def apply_for_branch(branch: str):
+    run(["git", "checkout", "-f", branch], capture_output=True).check_returncode()
+    run(["git", "pull"])
+    run(["git", "svn", "fetch"])
     out = run(["git", "svn", "info"], capture_output=True, encoding="utf-8")
     print(f"STDOUT: {out.stdout}, STDERR: {out.stderr}")
     out.check_returncode()
     out = out.stdout
     out = [i.strip().lower() for i in out.split("\n")]
+    if branch == "1.5":
+        env_name = "REVISION_15"
+        revision = REVISION_15
+    elif branch == "main":
+        env_name = "REVISION"
+        revision = REVISION
+    else:
+        raise Exception(f"Branch {branch} isn't supported")
     for i in out:
-        # print(i)
         if "revision" in i:
-            print(i)
-            NEW_REVISION = int(re.findall(r"\d+", i)[0])
-        if all([k in i for k in ["last", "changed", "rev"]]):
-            print(i)
-            REVISION = int(re.findall(r"\d+", i)[0])
+            new_revision = int(re.findall(r"\d+", i)[0])
+    if new_revision > revision:
+        run(["git", "svn", "rebase"])
+        print(
+            f"Found newer revision than current ({revision}) for {branch}: {new_revision}"
+        )
+        run(["git", "push"])
+        set_key(os.path.join(ROOT_PATH, ".env"), env_name, str(new_revision))
+        return True
+    return False
 
 
 def main(root_path: str) -> None:
     rev_str = f"STARTED RUNNING AT {datetime.datetime.now()}"
     print("=" * (len(rev_str) + 5))
     print(rev_str)
-    global NEW_REVISION, REVISION, GIT_PATH, SVN_PATH, ROOT_PATH
+    global GIT_PATH, ROOT_PATH
     ROOT_PATH = root_path
-    SVN_PATH = os.path.join(ROOT_PATH, "olex2-gui-svn")
     GIT_PATH = os.path.join(ROOT_PATH, "olex2-gui-git")
-    NEW_REVISION = None
-    REVISION = None
-    print(ROOT_PATH)
-    print(f"Current PATH: {os.path.abspath('.')}")
-    print(f"listdir: {os.listdir()}")
-    print(GIT_PATH)
-    parse_git_svn_args()
-    if NEW_REVISION == REVISION:
-        print(f"No newer revision found, still at {REVISION}")
-        print(f"ENDED RUNNING AT {datetime.datetime.now()}")
-        print("=" * (len(rev_str) + 5))
-        return
-    else:
-        print(f"Found newer revision than current ({REVISION}): {NEW_REVISION}")
-        merge_svn_git()
-        print(f"ENDED RUNNING AT {datetime.datetime.now()}")
-        print("=" * (len(rev_str) + 5))
+    os.chdir(GIT_PATH)
+    if not (apply_for_branch("main") or apply_for_branch("1.5")):
+        print(f"No new revisions found for any branch")
+    print(f"ENDED RUNNING AT {datetime.datetime.now()}")
+    print("=" * (len(rev_str) + 5))
 
 
 if __name__ == "__main__":
