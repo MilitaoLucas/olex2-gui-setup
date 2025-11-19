@@ -1,0 +1,1 @@
+0 * * * * /home/lucas/olex2-gui-setup/.venv/bin/python /home/lucas/olex2-gui-setup/smaller_get.py /home/lucas/olex2-gui-setup >> /home/lucas/olex2-gui-setup/cron.log 2>&1
