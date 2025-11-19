@@ -8,8 +8,8 @@ from dotenv import load_dotenv, set_key
 
 load_dotenv()
 
-REVISION = int(os.getenv("REVISION"))
-REVISION_15 = int(os.getenv("REVISION_15"))
+REVISION = int(os.getenv("REVISION", "0"))
+REVISION_15 = int(os.getenv("REVISION_15", "0"))
 
 
 def apply_for_branch(branch: str):
