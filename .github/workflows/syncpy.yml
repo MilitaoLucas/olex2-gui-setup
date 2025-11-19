@@ -46,23 +46,48 @@ jobs:
       - name: Cache .git directory
         uses: actions/cache@v4.2.3
         with:
-          id: cache-git
           path: olex2-gui-git/.git
-          key: git-svn-${{ github.sha }} # Use a unique key for initial setup
+          # Use a static key so the cache persists across runs
+          # This allows incremental SVN fetches instead of full clones
+          key: git-svn-cache-v1
+          restore-keys: |
+            git-svn-cache-
 
       - name: Initialize Git SVN (if not already initialized)
-        if: steps.cache-git.outputs.cache-hit != 'true'
         run: |
-          git svn init --prefix=svn/ --trunk=trunk http://svn.olex2.org/olex2-gui olex2-gui-git
-          cd olex2-gui-git 
+          cd olex2-gui-git
+          # Check if git-svn is already initialized
+          if [ ! -d .git/svn ]; then
+            echo "Git-SVN not initialized, initializing now..."
+            git svn init --prefix=svn/ --trunk=trunk http://svn.olex2.org/olex2-gui
+          else
+            echo "Git-SVN already initialized, skipping init"
+          fi
           git branch -a
           cd ..
+
+      - name: Initialize .env file
+        run: |
+          # Create .env file if it doesn't exist
+          if [ ! -f .env ]; then
+            echo "Creating .env file with initial revisions..."
+            echo "REVISION=0" > .env
+            echo "REVISION_15=0" >> .env
+          else
+            echo ".env file already exists"
+          fi
+
+      - name: Install Python dependencies
+        run: |
+          python3 -m pip install --upgrade pip
+          pip install -r requirements.txt
 
       - name: Run SVN to Git Sync Script
         id: sync_script
         run: |
           # Execute your Python script, passing the workspace path as the root path
-          python svn-sync.py ${{ github.workspace }}
+          # This follows the cron example: run the script with the root path as an argument
+          python3 smaller_get.py ${{ github.workspace }}
 
       - name: Report Failure
         if: steps.sync_script.outcome == 'failure'
