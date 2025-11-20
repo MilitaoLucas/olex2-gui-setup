@@ -46,12 +46,13 @@ jobs:
       - name: Cache .git directory
         uses: actions/cache@v4.2.3
         with:
-          path: olex2-gui-git/.git
+          path: .git/modules/olex2-gui-git
           # Use a static key so the cache persists across runs
           # This allows incremental SVN fetches instead of full clones
-          key: git-svn-cache-v1
+          # Cache the actual submodule git directory (not the .git file pointer)
+          key: git-svn-cache-v2
           restore-keys: |
-            git-svn-cache-
+            git-svn-cache-v2-
 
       - name: Initialize Git SVN (if not already initialized)
         run: |
